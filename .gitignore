@@ -90,6 +90,7 @@ Thumbs.db
 .meta/
 
 # Custom project-specific ignores
+/.old/
 /builds/
 /speech_models/
 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Automatic Suspend due to DPMS</title>
+    <style>
+        /* Solarized Dark Theme */
+        body {
+            background-color: #002b36; /* base03 */
+            color: #839496; /* base0 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2 {
+            color: #268bd2; /* blue */
+            border-bottom: 1px solid #586e75; /* base01 */
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        p {
+            margin-bottom: 1em;
+        }
+        code {
+            color: #2aa198; /* cyan */
+            background-color: #073642; /* base02 */
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        pre {
+            background-color: #073642; /* base02 */
+            color: #93a1a1; /* base1 */
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #586e75; /* base01 for border */
+        }
+        pre code {
+            background-color: transparent; /* No double background */
+            color: inherit; /* Inherit color from pre */
+            padding: 0;
+            border-radius: 0;
+            border: none;
+        }
+        ul {
+            margin-bottom: 1em;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Disable Automatic Suspend due to DPMS</h1>
+
+    <p>You've identified the underlying issue. Your DPMS (Display Power Management Signaling) is currently enabled with timers set to 600 seconds (10 minutes) for standby, suspend, and off states. This explains why your laptop goes into suspend mode after a period of inactivity, despite having configured systemd to ignore suspend requests.</p>
+
+    <p>To permanently resolve this issue, execute the following commands:</p>
+
+    <h2>Immediate Action (Current Session)</h2>
+
+    <p>To immediately disable DPMS for your current X session:</p>
+    <pre><code>xset s off
+xset -dpms</code></pre>
+
+    <h2>Persistent Xorg Configuration</h2>
+
+    <p>To create a persistent configuration that disables DPMS across Xorg sessions:</p>
+    <ol>
+        <li>Create the directory if it doesn't exist:
+            <pre><code>sudo mkdir -p /etc/X11/xorg.conf.d/</code></pre>
+        </li>
+        <li>Create the configuration file:
+            <pre><code>sudo tee /etc/X11/xorg.conf.d/10-monitor.conf > /dev/null << 'EOF'
+Section "ServerFlags"
+    Option "BlankTime" "0"
+    Option "StandbyTime" "0"
+    Option "SuspendTime" "0"
+    Option "OffTime" "0"
+EndSection
+
+Section "Monitor"
+    Identifier "Monitor0"
+    Option "DPMS" "false"
+EndSection
+EOF</code></pre>
+        </li>
+    </ol>
+
+    <h2>Ensure Persistence After Display Connection Changes</h2>
+
+    <p>To ensure DPMS remains disabled even after display connection changes or X session restarts, add the command to your <code>~/.xinitrc</code> file:</p>
+    <pre><code>echo 'xset s off -dpms' >> ~/.xinitrc</code></pre>
+
+    <h2>DWM Specific Autostart Configuration</h2>
+
+    <p>For DWM setups, add the command to your autostart script:</p>
+    <ol>
+        <li>Create the DWM autostart directory if it doesn't exist:
+            <pre><code>mkdir -p ~/.dwm/</code></pre>
+        </li>
+        <li>Add the command to the autostart script:
+            <pre><code>echo 'xset s off -dpms' >> ~/.dwm/autostart.sh</code></pre>
+        </li>
+        <li>Make the autostart script executable:
+            <pre><code>chmod +x ~/.dwm/autostart.sh</code></pre>
+        </li>
+    </ol>
+
+    <h2>Final Step</h2>
+
+    <p>After implementing these changes, reboot your system or restart your X session. DPMS will be disabled, preventing your laptop from automatically entering standby, suspend, or power-off states regardless of external monitor connections.</p>
+
+</body>
+</html>
+```Please confirm if this HTML output is acceptable.

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Task: Verify URL Removal from Google Index</title>
+    <style>
+        /* Solarized Dark Theme */
+        body {
+            background-color: #002b36; /* base03 */
+            color: #839496; /* base0 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2, h3 {
+            color: #268bd2; /* blue */
+            border-bottom: 1px solid #586e75; /* base01 */
+            padding-bottom: 5px;
+            margin-top: 1.5em;
+        }
+        h1 {
+            font-size: 2em;
+            text-align: center;
+            color: #b58900; /* yellow */
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #2aa198; /* cyan */
+        }
+        h3 {
+            font-size: 1.25em;
+            color: #cb4b16; /* orange */
+            margin-top: 1em;
+            border-bottom: none;
+        }
+        p, li {
+            margin-bottom: 0.8em;
+        }
+        code {
+            color: #2aa198; /* cyan */
+            background-color: #073642; /* base02 */
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        pre {
+            background-color: #073642; /* base02 */
+            color: #93a1a1; /* base1 */
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #586e75; /* base01 for border */
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        strong {
+           color: #eee8d5; /* base2 - for emphasis on labels */
+        }
+        .task-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 3px solid #6c71c4; /* violet */
+            background-color: #073642; /* base02 */
+            border-radius: 4px;
+        }
+        .status-update {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #073642; /* base02 */
+            border: 1px dashed #b58900; /* yellow */
+            color: #b58900; /* yellow */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weekly Task: Verify URL Removal from Google Index</h1>
+
+    <div class="task-section">
+        <h2>Task Overview</h2>
+        <p>Confirm that the removed URLs are no longer indexed by Google after one week.</p>
+    </div>
+
+    <div class="task-section">
+        <h2>Verification Date</h2>
+        <p><strong>Target Check Date:</strong> [Insert Date One Week from Today]</p>
+    </div>
+
+    <div class="task-section">
+        <h2>Steps to Verify</h2>
+
+        <h3>1. Check Google Search Console</h3>
+        <ul>
+            <li>Go to <strong>Google Search Console</strong> &rarr; <strong>Removals</strong></li>
+            <li>Ensure that all requested URLs are still listed under <strong>Temporary Removals</strong></li>
+            <li>Check the <strong>Coverage Report</strong> for any remaining indexed pages</li>
+        </ul>
+
+        <h3>2. Use Google Search Operator</h3>
+        <p>Run the following search query in Google:</p>
+        <pre><code>site:techeliteautomation.com/pages/</code></pre>
+        <ul>
+            <li>If the removed URLs <strong>no longer appear</strong>, they have been successfully removed.</li>
+            <li>If they <strong>still appear</strong>, Google may not have processed the request yet.</li>
+        </ul>
+
+        <h3>3. Verify Sitemap Update</h3>
+        <ul>
+            <li>Ensure that the removed URLs are not listed in <strong>sitemap.xml</strong></li>
+            <li>Re-submit the sitemap in Google Search Console if necessary</li>
+        </ul>
+
+        <h3>4. Recheck HTTP Status Codes (Optional)</h3>
+        <p>Run the following command for each removed URL to confirm they return <strong>404 Not Found</strong>:</p>
+        <pre><code>curl -I https://techeliteautomation.com/pages/about.html
+curl -I https://techeliteautomation.com/pages/projects.html
+curl -I https://techeliteautomation.com/pages/contact.html
+curl -I https://techeliteautomation.com/pages/faq.html
+curl -I https://techeliteautomation.com/pages/privacy.html
+curl -I https://techeliteautomation.com/pages/services.html</code></pre>
+        <p>Expected output: <code>HTTP/2 404</code></p>
+    </div>
+
+    <div class="task-section">
+        <h2>Next Steps</h2>
+        <ul>
+            <li>If URLs are still indexed: <strong>Wait another week and recheck</strong></li>
+            <li>If URLs are removed: <strong>Task complete ✅</strong></li>
+            <li>If unexpected results appear: <strong>Investigate Google Search Console reports</strong></li>
+        </ul>
+    </div>
+
+    <div class="task-section">
+        <h2>Notes</h2>
+        <ul>
+            <li>Google’s processing time varies; expect removals to take up to several weeks.</li>
+            <li>If URLs persist for over a month, consider re-requesting removal or troubleshooting indexing settings.</li>
+        </ul>
+    </div>
+
+    <hr>
+    <div class="status-update">
+        <strong>Status Update:</strong> <em>(To be filled after verification)</em>
+    </div>
+
+</body>
+</html>

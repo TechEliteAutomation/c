@@ -1,0 +1,26 @@
+# Main configuration for the Unified Toolkit.
+# To use, copy this file to "config.toml" and fill in your actual values.
+# The application will load its settings from "config.toml".
+
+[api_keys]
+# Your API key for Google's Generative AI services (Gemini).
+# Keep this secret and do not commit it to version control.
+gemini = "YOUR_GEMINI_API_KEY_HERE"
+
+[ollama]
+# Configuration for connecting to a local Ollama instance.
+base_url = "http://localhost:11434"
+model = "llama3" # The default model to use for renaming.
+
+[paths]
+# Default base directory for media processing backups.
+media_backup_base_dir = "/media/backups/processing"
+
+# Default mount point for the USB backup drive.
+# The backup script will still try to auto-detect, but uses this as a fallback.
+usb_mount_point = "/mnt/usb_backup"
+
+[settings]
+# Default text-to-speech engine for the AI console.
+# Options can be "piper" or "espeak".
+tts_engine = "piper"

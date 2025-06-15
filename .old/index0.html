@@ -1,0 +1,236 @@
+--- START OF FILE index.html ---
+<!DOCTYPE html>
+<html lang="en"> <!-- data-theme attribute will be added by JS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSP (Content Security Policy) - Adjust as needed -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        img-src 'self' data:; 
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self'; 
+        frame-ancestors 'none'; 
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>Tech Elite Automation | Expert AI, DevOps & Full-Stack Solutions</title>
+    <meta name="description" content="Tech Elite Automation delivers high-impact AI solutions, robust IT infrastructure, and custom full-stack development to optimize your business operations and drive growth.">
+    <meta name="keywords" content="AI solutions, IT infrastructure, full-stack development, DevOps, automation, cloud optimization, data processing, tech elite automation">
+    <meta name="author" content="Tech Elite Automation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/" />
+    <meta property="og:title" content="Tech Elite Automation | Expert AI & IT Solutions">
+    <meta property="og:description" content="Transform your business with Tech Elite Automation's expert AI, DevOps, and full-stack development services.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png">
+     <meta property="og:url" content="https://techeliteautomation.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tech Elite Automation",
+      "url": "https://techeliteautomation.com",
+      "logo": "https://techeliteautomation.com/assets/images/techelite-logo.png",
+      "description": "Expert provider of AI-driven solutions, IT infrastructure optimization, and full-stack development.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "ceo@techeliteautomation.com",
+        "contactType": "Sales & Technical Inquiries"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://techeliteautomation.com/services.html?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "sameAs": [
+        "https://github.com/TechEliteAutomation" 
+      ]
+    }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link active">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link">Services</a></li>
+                    <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="theme-switcher" class="theme-toggle-button" aria-label="Switch to light mode">
+                    <!-- Icon will be set by JS -->
+                </button>
+            </nav>
+            <!-- NAV CTA -->
+            <a href="/contact.html" class="nav-cta btn btn-primary">Unlock Your Potential</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section full-height-section text-center">
+            <div class="hero-content">
+                <h1 class="hero-title">AI & Automation for <span class="highlight">Peak Performance</span></h1>
+                <p class="hero-subtitle lead">Tech Elite Automation architects and deploys robust, scalable IT infrastructures and intelligent software solutions to dramatically optimize your processes and enhance operational efficiency.</p>
+                <div class="hero-cta-group">
+                    <!-- HERO CTAs -->
+                    <a href="/services.html" class="btn btn-primary btn-lg">Discover Our Solutions</a>
+                    <a href="/contact.html" class="btn btn-secondary btn-lg">Start Your Transformation</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro-about" class="content-section text-center">
+            <div class="container">
+                <h2 class="section-title">Transforming Businesses with <span class="highlight">Intelligent Technology</span></h2>
+                <p class="section-intro">Tech Elite Automation is your partner in navigating the complexities of modern IT. We leverage over 15 years of collective field experience in AI, DevOps, and full-stack development to deliver solutions that are not just technologically advanced, but also strategically aligned with your business objectives for tangible, measurable results.</p>
+            </div>
+        </section>
+
+        <section id="core-services" class="content-section alt-bg">
+            <div class="container text-center">
+                <h2 class="section-title">Our Core Expertise</h2>
+                <div class="services-grid homepage-services">
+                    <div class="service-card">
+                        <img src="/assets/icons/icon-ai.svg" alt="AI and Automation Icon" class="service-card-icon">
+                        <h3 class="service-card-title">AI & Intelligent Automation</h3>
+                        <p class="service-card-description">Leveraging Google Gemini, local LLMs, and custom scripting (Python, Bash, Java) to automate complex tasks, extract insights, and optimize workflows.</p>
+                        <!-- SERVICE CARD LINK/BUTTON -->
+                        <a href="/services/ai-automation.html" class="btn btn-link">Explore AI Solutions →</a>
+                    </div>
+                    <div class="service-card">
+                        <img src="/assets/icons/icon-devops-cloud.svg" alt="DevOps and Cloud Icon" class="service-card-icon">
+                        <h3 class="service-card-title">DevOps & IT Infrastructure</h3>
+                        <p class="service-card-description">Optimizing cloud and on-premises environments, implementing Infrastructure-as-Code, robust network security, and proactive system monitoring.</p>
+                        <!-- SERVICE CARD LINK/BUTTON -->
+                        <a href="/services/devops-infrastructure.html" class="btn btn-link">Optimize Infrastructure →</a>
+                    </div>
+                    <div class="service-card">
+                        <img src="/assets/icons/icon-full-stack.svg" alt="Full-Stack Development Icon" class="service-card-icon">
+                        <h3 class="service-card-title">Full-Stack & Data Engineering</h3>
+                        <p class="service-card-description">Developing responsive, SEO-optimized web applications, automating data pipelines, enhancing EDI systems, and implementing rigorous QA frameworks.</p>
+                        <!-- SERVICE CARD LINK/BUTTON -->
+                        <a href="/services/full-stack-data.html" class="btn btn-link">Build Your Application →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proven-results" class="content-section text-center">
+            <div class="container">
+                <h2 class="section-title">Engineering <span class="highlight">Game-Changing Results</span></h2>
+                <p class="section-intro">We don't just optimize, we revolutionize. Our targeted solutions deliver extraordinary advancements in your operational capabilities and bottom line.</p>
+                <div class="results-showcase">
+                     <div class="result-card">
+                        <img src="/assets/icons/icon-efficiency.svg" alt="Operational Efficiency Icon" class="result-card-icon" style="margin-bottom: 0.5rem;">
+                        <h4 class="result-card-metric"><span class="highlight">60%</span> Leap</h4>
+                        <p class="result-card-description">In operational efficiency, achieved by deploying cutting-edge AI automation and hyper-optimized data workflows.</p>
+                    </div>
+                    <div class="result-card">
+                        <img src="/assets/icons/icon-cost-reduction.svg" alt="Cost Optimization Icon" class="result-card-icon" style="margin-bottom: 0.5rem;">
+                        <h4 class="result-card-metric"><span class="highlight">30%</span> Cut</h4>
+                        <p class="result-card-description">In operational expenditures through radical cloud architecture optimization and lean DevOps transformations.</p>
+                    </div>
+                    <div class="result-card">
+                        <img src="/assets/icons/icon-throughput-increase.svg" alt="Accelerated Delivery Icon" class="result-card-icon" style="margin-bottom: 0.5rem;">
+                        <h4 class="result-card-metric"><span class="highlight">3x</span> Faster</h4>
+                        <p class="result-card-description">Go-to-market speed, catapulting your product delivery with our agile full-stack development and CI/CD mastery.</p>
+                    </div>
+                    <div class="result-card">
+                        <img src="/assets/icons/icon-secure.svg" alt="Enhanced Reliability & Security Icon" class="result-card-icon" style="margin-bottom: 0.5rem;">
+                        <h4 class="result-card-metric"><span class="highlight">95%</span> Drop</h4>
+                        <p class="result-card-description">In critical system errors and vulnerabilities, fortifying your operations with unparalleled resilience and ironclad security.</p>
+                    </div>
+                </div>
+                <a href="/portfolio.html" class="btn btn-secondary mt-3">Witness the Transformation</a>
+            </div>
+        </section>
+
+        <section id="cta-banner" class="cta-banner-section alt-bg text-center">
+            <div class="container">
+                <h2 class="cta-title">Ready to Elevate Your Technology?</h2>
+                <p class="cta-text">Let's discuss how Tech Elite Automation can architect the perfect solution to meet your strategic objectives and overcome your technical challenges.</p>
+                <!-- FINAL CTA -->
+                <a href="/contact.html" class="btn btn-primary btn-lg">Get Your Free Strategy Call</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert AI, DevOps, and full-stack solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Case Studies</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS Script with SRI -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js" integrity="sha384-hB6E4GtPqbCL94gg/4aGUrSdBqT2ccnB11lhb+ZscmEVOaPX8rktTt7V0b/Z0lXD" crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/contact-form.js"></script> 
+</body>
+</html>
+--- END OF FILE index.html ---

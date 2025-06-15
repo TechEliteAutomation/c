@@ -1,4 +1,4 @@
-# c – Core Infrastructure
+# C – Core Infrastructure
 
 This repository consolidates core software components into a single, manageable codebase, designed for high-velocity development and robust automation.
 

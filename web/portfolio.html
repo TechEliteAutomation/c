@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSP (Content Security Policy) -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' data: https://via.placeholder.com /assets/; /* Allow self, data URIs, placeholder, and local assets */
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>Capabilities Showcase | Tech Elite Automation</title>
+    <meta name="description" content="Explore Tech Elite Automation's capabilities through project highlights, showcasing expertise in AI, custom software development, and web solutions. View our code on GitHub.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/portfolio.html" />
+    <meta property="og:title" content="Capabilities Showcase | Tech Elite Automation">
+    <meta property="og:description" content="Demonstrating our skills in building innovative AI tools, and developing web solutions. See our coding expertise on GitHub.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png">
+    <meta property="og:url" content="https://techeliteautomation.com/portfolio.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO (CollectionPage or ItemList for portfolio items) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Tech Elite Automation Capabilities Showcase",
+      "description": "A collection of projects and demos showcasing expertise in AI, custom software, and web solutions.",
+      "url": "https://techeliteautomation.com/portfolio.html",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Automation & AI Scripting Expertise", "url": "https://techeliteautomation.com/portfolio.html#showcase-automation-scripts" } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "NYC Singles Dance - Web Design & Branding", "url": "https://techeliteautomation.com/portfolio.html#showcase-web-design" } }
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tech Elite Automation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://techeliteautomation.com/assets/images/techelite-logo.png"
+        }
+      }
+    }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link">Services</a></li>
+                    <li><a href="/portfolio.html" class="nav-link active">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="/contact.html" class="nav-cta btn btn-primary">Get Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero-section text-center">
+            <div class="container">
+                <h1 class="page-title">Capabilities Showcase</h1>
+                <p class="page-subtitle lead">Illustrating our expertise in developing innovative and effective technology solutions.</p>
+            </div>
+        </section>
+
+        <section id="portfolio-intro" class="content-section">
+            <div class="container text-center">
+                <p class="section-intro">This showcase highlights a selection of projects and custom-developed tools that demonstrate our technical capabilities and problem-solving approach. We focus on delivering solutions that are not only functional but also provide clear business value and efficiency. Many of our foundational scripts and code examples are publicly available on GitHub.</p>
+            </div>
+        </section>
+
+        <!-- Showcase Item 1: Custom Automation & AI Scripts (Emphasizing GitHub) -->
+        <section id="showcase-automation-scripts" class="content-section portfolio-case-study">
+            <div class="container">
+                <h2 class="case-study-title">Automation & AI Scripting Expertise</h2>
+                 <div class="case-study-grid">
+                    <div class="case-study-details">
+                        <h3>Project Overview:</h3>
+                        <p>We maintain a public repository of custom Python and Bash scripts focused on AI-powered automation, efficient file/data processing, and system utilities. These scripts exemplify our ability to create tailored tools that solve specific operational challenges and improve productivity. We encourage you to explore our code to see our approach to practical problem-solving.</p>
+                        <h3>Examples of Scripts & Capabilities:</h3>
+                        <ul>
+                            <li><strong>Gemini API Integration Script:</strong> A Python script demonstrating seamless interaction with the Google Gemini API for tasks such as automated content generation, data analysis, or research assistance.</li>
+                            <li><strong>Advanced File Processing Utilities:</strong> Custom scripts for automated batch processing of files, data extraction from various formats (text, CSV), file renaming/organization, and data validation.</li>
+                            <li><strong>System Automation Snippets:</strong> Bash and Python examples for automating routine system administration tasks, updates, or backups.</li>
+                        </ul>
+                        <h3>Key Technologies & Skills Demonstrated:</h3>
+                        <ul class="tech-list">
+                            <li>Python</li>
+                            <li>Google Gemini API</li>
+                            <li>Bash Scripting</li>
+                            <li>File I/O & Parsing</li>
+                            <li>Data Manipulation</li>
+                            <li>API Integration</li>
+                            <li>Open Source Contribution</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-results">
+                         <div class="result-highlight-box">
+							<img src="/assets/icons/icon-code.svg" alt="Code Icon" class="result-card-icon-lg">
+                            <span class="result-label">Practical Code & Scripting Prowess</span>
+                        </div>
+                        <p><strong>Demonstrated Value:</strong></p>
+                        <ul>
+                            <li>Ability to rapidly develop custom tools for specific needs.</li>
+                            <li>Expertise in leveraging powerful APIs like Gemini for intelligent automation.</li>
+                            <li>Transparent development practices, with code available for review.</li>
+                            <li>Proven skills in automating repetitive tasks, leading to potential time and cost savings.</li>
+                        </ul>
+                        <p class="mt-2"><strong>Explore our codebase and see these tools in action:</strong></p>
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm mt-1">View All Scripts on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase Item 2: Web Design & Brand Identity Project (NYC Singles Dance) -->
+        <section id="showcase-web-design" class="content-section portfolio-case-study alt-bg">
+            <div class="container">
+                <h2 class="case-study-title">NYC Singles Dance - Web Design & Branding</h2>
+                <div class="case-study-grid">
+                    <div class="case-study-details">
+                        <h3>Client & Challenge:</h3>
+                        <p>NYC Singles Dance, a community events organizer, required a strategic overhaul of their online presence and business positioning. This included a website refresh, a new logo, business model refinement, and a compelling pitch deck to better attract attendees, reflect their vibrant atmosphere, and streamline event promotion.</p>
+                        <h3>Our Solution:</h3>
+                        <p>Tech Elite Automation (under previous freelance capacity) delivered a comprehensive solution including:</p>
+                            <ul>
+                                <li><strong>Business Model Consultation:</strong> Analyzed the existing model and provided strategic recommendations for growth and attendee engagement.</li>
+                                <li><strong>Logo Design:</strong> Created a dynamic and welcoming logo representing the social energy and dance focus of the events.</li>
+                                <li><strong>Website Design & Development:</strong> Designed and built a user-friendly, responsive website focused on clear event listings, easy navigation, showcasing the fun atmosphere, and incorporating the new branding. Optimized for event discovery and sign-ups.</li>
+                                <li><strong>Pitch Deck Creation:</strong> Developed a professional pitch deck outlining the business model, event value proposition, and growth potential.</li>
+                            </ul>
+                        <h3>Key Capabilities & Technologies:</h3>
+                        <ul class="tech-list">
+                            <li>Business Strategy & Consulting</li>
+                            <li>Graphic Design (Logo, Pitch Deck)</li>
+                            <li>UI/UX Design Principles</li>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>Responsive Web Design</li>
+                            <li>Event Promotion Strategy</li>
+                            <li>Content Development</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-results">
+                        <div class="result-highlight-box">
+                            <img src="/assets/icons/icon-full-stack.svg" alt="Web Design Icon" class="result-card-icon-lg">
+                            <span class="result-label">Strategic Branding & Digital Presence</span>
+                        </div>
+                        <p><strong>Project Outcomes:</strong></p>
+                        <ul>
+                            <li>Delivered a cohesive brand identity, strategic business insights, and a modern website tailored to NYC Singles Dance.</li>
+                            <li>Improved user experience for finding event details and understanding the community's value.</li>
+                            <li>Provided tools (website, pitch deck) for effective promotion and potential partner outreach.</li>
+                            <li>Established a stronger foundation for attracting attendees and growing the event series.</li>
+                        </ul>
+                         <div class="portfolio-visuals mt-3">
+                             <p><strong>View Project Assets:</strong></p>
+                             <!-- Updated Links -->
+                             <a href="/assets/images/nycsd-website-preview.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm mt-1">View Website Screenshot</a>
+                             <a href="/assets/images/nycsd-logo.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm mt-1">View Logo Design</a>
+                             <a href="/assets/images/nycsd-pitch-deck-sample.png" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm mt-1">View Pitch Deck Sample</a>
+                         </div>
+                         <a href="/services/full-stack-data.html" class="btn btn-secondary btn-sm mt-3">Related Service: Full-Stack Development</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta-portfolio" class="content-section text-center">
+            <div class="container">
+                <h2 class="section-title">Let's Discuss Your Next Project</h2>
+                <p class="section-intro">The examples above provide a glimpse into our capabilities. We are eager to understand your specific challenges and demonstrate how Tech Elite Automation can deliver tailored, high-impact solutions for your business. Don't forget to check out our <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer">GitHub profile</a> for more code examples.</p>
+                <a href="/contact.html" class="btn btn-primary btn-lg">Contact Us to Learn More</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert AI, scripting, and full-stack solutions. Explore our code on <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Showcase</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                        <!-- Add other social links here if applicable -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

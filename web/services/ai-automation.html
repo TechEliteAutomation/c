@@ -1,0 +1,238 @@
+<!-- START OF FILE: services/ai-automation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSP (Content Security Policy) -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        img-src 'self' data:; 
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self'; 
+        frame-ancestors 'none'; 
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>AI & Intelligent Automation Solutions | Tech Elite Automation</title>
+    <meta name="description" content="Expert AI solutions: autonomous agents (Google Gemini, Ollama), data extraction, process automation (Python, Bash, Java) by Tech Elite Automation.">
+    <meta name="keywords" content="AI agent development, Google Gemini API, Ollama, AI automation services, Python automation, intelligent data extraction, AI research optimization">
+    <meta name="author" content="Tech Elite Automation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/services/ai-automation.html" />
+    <meta property="og:title" content="AI & Intelligent Automation Solutions | Tech Elite Automation">
+    <meta property="og:description" content="Unlock business value with our AI expertise: autonomous agents, data extraction, and advanced process automation.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png"> <!-- Consider a service-specific OG image if available -->
+    <meta property="og:url" content="https://techeliteautomation.com/services/ai-automation.html">
+    <meta property="og:type" content="website"> <!-- Or "article" if content is very detailed -->
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO (Service) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "AI & Intelligent Automation Solutions",
+      "name": "AI & Intelligent Automation Solutions",
+      "description": "Development of autonomous AI agents using Google Gemini API and local LLMs (Ollama) for research, data extraction, and multi-format file processing. Custom automation scripts using Python, Bash, and Java.",
+      "url": "https://techeliteautomation.com/services/ai-automation.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "Tech Elite Automation",
+        "url": "https://techeliteautomation.com"
+      },
+      "areaServed": { // Define if you serve specific areas, or remove if global/remote
+        "@type": "AdministrativeArea",
+        "name": "Global" 
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Automation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Autonomous AI Agent Development"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Automated Data Extraction & Processing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom Automation Scripting (Python, Bash, Java)"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link active-parent">Services</a></li> <!-- Mark parent as active -->
+                    <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="/contact.html" class="nav-cta btn btn-primary">Get Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero-section service-hero text-center">
+            <div class="container">
+                <h1 class="page-title">AI & Intelligent Automation</h1>
+                <p class="page-subtitle lead">Harness the power of Artificial Intelligence to revolutionize your business processes, gain critical insights, and drive unprecedented efficiency.</p>
+            </div>
+        </section>
+
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/services.html">Services</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">AI & Automation</li>
+                </ol>
+            </div>
+        </nav>
+
+        <section id="service-details" class="content-section">
+            <div class="container">
+                <div class="service-content-layout">
+                    <article class="service-main-content">
+                        <h2 class="section-title-sm">Transforming Operations with Advanced AI</h2>
+                        <p>Tech Elite Automation specializes in engineering sophisticated AI-driven solutions that translate complex technical capabilities into tangible business value. We leverage cutting-edge cloud APIs like Google Gemini and efficient local Large Language Models (LLMs) such as Ollama to build autonomous agents tailored to your specific needs.</p>
+                        
+                        <h3 class="content-subtitle">Key AI & Automation Offerings:</h3>
+                        <ul>
+                            <li><strong>Autonomous AI Agent Development:</strong> Engineering intelligent agents for tasks like advanced research, complex data extraction from diverse sources, and automated multi-format file processing (PDFs, documents, spreadsheets, etc.).</li>
+                            <li><strong>Process Automation:</strong> Utilizing Python, Bash, and Java to create custom scripts and applications that automate repetitive and time-consuming manual processes, freeing up your valuable human resources.</li>
+                            <li><strong>Intelligent Data Extraction & Analysis:</strong> Implementing AI models to accurately extract, structure, and analyze data from unstructured sources, providing actionable insights.</li>
+                            <li><strong>Workflow Optimization:</strong> Analyzing existing workflows and integrating AI and automation to significantly improve speed, accuracy, and overall efficiency (e.g., achieving up to 30% gains in operational efficiency).</li>
+                            <li><strong>Rapid Prototyping & Iterative Refinement:</strong> Quickly developing proof-of-concept AI solutions and iteratively refining them based on feedback and performance metrics to ensure optimal outcomes.</li>
+                        </ul>
+
+                        <h3 class="content-subtitle">Technologies We Master:</h3>
+                        <p>Our expertise includes but is not limited to:</p>
+                        <ul class="tech-list">
+                            <li>Cloud AI APIs (Google Gemini, etc.)</li>
+                            <li>Local LLMs (Ollama and similar frameworks)</li>
+                            <li>Python (for AI/ML, scripting, automation)</li>
+                            <li>Bash Scripting (for system automation)</li>
+                            <li>Java (for enterprise automation solutions)</li>
+                            <li>Data Processing Libraries (Pandas, etc.)</li>
+                            <li>Natural Language Processing (NLP) techniques</li>
+                        </ul>
+                        
+                        <h3 class="content-subtitle">Benefits of Our AI Solutions:</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">Increased Efficiency</div>
+                            <div class="benefit-item">Reduced Operational Costs</div>
+                            <div class="benefit-item">Enhanced Data Accuracy</div>
+                            <div class="benefit-item">Faster Decision Making</div>
+                            <div class="benefit-item">Scalable Operations</div>
+                            <div class="benefit-item">Competitive Advantage</div>
+                        </div>
+
+                    </article>
+                    <aside class="service-sidebar">
+                        <h4>Related Services</h4>
+                        <ul>
+                            <li><a href="/services/devops-infrastructure.html">DevOps & IT Infrastructure</a></li>
+                            <li><a href="/services/full-stack-data.html">Full-Stack & Data Engineering</a></li>
+                        </ul>
+                        <h4>Case Studies</h4>
+                        <p>See our AI solutions in action:</p>
+                        <ul>
+                            <li><a href="/portfolio.html#case-ai-efficiency">AI-Driven Operational Efficiency</a></li>
+                            <!-- Link to more specific cases if available -->
+                        </ul>
+                        <div class="sidebar-cta">
+                            <h4>Discuss Your AI Project</h4>
+                            <p>Let's explore how AI can transform your business.</p>
+                            <a href="/contact.html" class="btn btn-primary">Get a Consultation</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert AI, DevOps, and full-stack solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Case Studies</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

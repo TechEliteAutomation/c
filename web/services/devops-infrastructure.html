@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSP (Content Security Policy) -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        img-src 'self' data:; 
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self'; 
+        frame-ancestors 'none'; 
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>DevOps & IT Infrastructure Solutions | Tech Elite Automation</title>
+    <meta name="description" content="Secure and scalable IT infrastructure: cloud/on-prem optimization, IaC, network security, real-time monitoring by Tech Elite Automation.">
+    <meta name="keywords" content="DevOps services, IT infrastructure consulting, cloud optimization, on-premise IT solutions, Infrastructure as Code, network security services, IT cost reduction">
+    <meta name="author" content="Tech Elite Automation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/services/devops-infrastructure.html" />
+    <meta property="og:title" content="DevOps & IT Infrastructure Solutions | Tech Elite Automation">
+    <meta property="og:description" content="Build resilient, scalable, and cost-effective IT environments with our expert DevOps and infrastructure services.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png">
+    <meta property="og:url" content="https://techeliteautomation.com/services/devops-infrastructure.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO (Service) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "DevOps & Modern IT Infrastructure Solutions",
+      "name": "DevOps & Modern IT Infrastructure Solutions",
+      "description": "Optimization of cloud (Azure, etc.) and on-premises IT infrastructure. Implementation of Infrastructure-as-Code (IaC), CI/CD pipelines, network security architecture, real-time monitoring, and custom GitHub synchronization systems.",
+      "url": "https://techeliteautomation.com/services/devops-infrastructure.html",
+      "provider": {
+        "@type": "Organization",
+        "name": "Tech Elite Automation",
+        "url": "https://techeliteautomation.com"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Global"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "DevOps & Infrastructure Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Cloud Infrastructure Optimization (Azure, AWS, GCP)" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "On-Premises Infrastructure Management" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Infrastructure-as-Code (IaC) Implementation" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Network Security & Architecture Design" }
+          },
+           {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Real-Time Monitoring & Incident Response" }
+          }
+        ]
+      }
+    }
+    </script>
+    <!-- Google Analytics (Replace G-YOUR_GA_ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link active-parent">Services</a></li>
+                    <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="/contact.html" class="nav-cta btn btn-primary">Get Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero-section service-hero text-center">
+            <div class="container">
+                <h1 class="page-title">DevOps & Modern IT Infrastructure</h1>
+                <p class="page-subtitle lead">Architecting resilient, scalable, and secure IT environments that form the backbone of your digital operations and drive business agility.</p>
+            </div>
+        </section>
+
+        <nav aria-label="breadcrumb" class="breadcrumb-nav">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/services.html">Services</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">DevOps & Infrastructure</li>
+                </ol>
+            </div>
+        </nav>
+
+        <section id="service-details" class="content-section">
+            <div class="container">
+                <div class="service-content-layout">
+                    <article class="service-main-content">
+                        <h2 class="section-title-sm">Building a Foundation for Growth and Stability</h2>
+                        <p>Tech Elite Automation offers comprehensive DevOps and IT infrastructure services designed to enhance performance, ensure security, and optimize costs. We help businesses modernize their IT landscapes, whether in the cloud, on-premises, or in hybrid environments.</p>
+                        
+                        <h3 class="content-subtitle">Core Infrastructure & DevOps Services:</h3>
+                        <ul>
+                            <li><strong>Cloud & On-Premises Optimization:</strong> Refining resource allocation and scalability in cloud platforms (Azure, AWS, GCP) and on-premises data centers, achieving significant cost reductions (e.g., up to 25% reduced operational costs).</li>
+                            <li><strong>Infrastructure-as-Code (IaC):</strong> Leveraging tools like Terraform and Ansible to automate the provisioning and management of infrastructure, ensuring consistency, repeatability, and rapid deployment.</li>
+                            <li><strong>CI/CD Pipeline Implementation:</strong> Designing and implementing continuous integration and continuous delivery/deployment pipelines to accelerate software delivery cycles and improve code quality.</li>
+                            <li><strong>Network Security & Architecture:</strong> Building and maintaining secure, redundant network infrastructures with a focus on robust security protocols, real-time monitoring, and proactive incident response mechanisms.</li>
+                            <li><strong>System Administration & Automation:</strong> Expert Arch Linux system administration and automation of routine tasks (data processing, file backups, system updates) using Python and Bash scripts.</li>
+                            <li><strong>Custom GitHub Synchronization:</strong> Implementing bespoke GitHub synchronization systems with real-time redundancy for seamless version control, collaboration, and offline resilience.</li>
+                        </ul>
+
+                        <h3 class="content-subtitle">Key Technologies & Methodologies:</h3>
+                        <ul class="tech-list">
+                            <li>Cloud Platforms (Azure, AWS, GCP)</li>
+                            <li>Infrastructure-as-Code (Terraform, Ansible)</li>
+                            <li>Containerization & Orchestration (Docker, Kubernetes - awareness)</li>
+                            <li>CI/CD Tools (Jenkins, GitLab CI, GitHub Actions)</li>
+                            <li>Monitoring Tools (Prometheus, Grafana - awareness)</li>
+                            <li>Scripting (Python, Bash)</li>
+                            <li>Version Control (Git, GitHub)</li>
+                            <li>Network Security Protocols & Firewalls</li>
+                        </ul>
+                        
+                        <h3 class="content-subtitle">Benefits of Our Infrastructure Solutions:</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">Enhanced System Stability</div>
+                            <div class="benefit-item">Improved Scalability & Agility</div>
+                            <div class="benefit-item">Reduced Operational Costs</div>
+                            <div class="benefit-item">Increased Security Posture</div>
+                            <div class="benefit-item">Faster Deployment Cycles</div>
+                            <div class="benefit-item">Streamlined Operations</div>
+                        </div>
+
+                    </article>
+                    <aside class="service-sidebar">
+                        <h4>Related Services</h4>
+                        <ul>
+                            <li><a href="/services/ai-automation.html">AI & Intelligent Automation</a></li>
+                            <li><a href="/services/full-stack-data.html">Full-Stack & Data Engineering</a></li>
+                        </ul>
+                        <h4>Case Studies</h4>
+                        <p>See our infrastructure solutions in action:</p>
+                        <ul>
+                            <li><a href="/portfolio.html#case-cloud-cost">Cloud & On-Prem Cost Reduction</a></li>
+                            <!-- Link to more specific cases if available -->
+                        </ul>
+                         <div class="sidebar-cta">
+                            <h4>Optimize Your Infrastructure</h4>
+                            <p>Let's build a robust and efficient IT foundation.</p>
+                            <a href="/contact.html" class="btn btn-primary">Get a Consultation</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert AI, DevOps, and full-stack solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Case Studies</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/main.js"></script>
+</body>
+</html>

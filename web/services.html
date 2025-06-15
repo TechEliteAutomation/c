@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSP (Content Security Policy) -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' data:;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>Our Services | Tech Elite Automation | Tech, Marketing & Business Development</title>
+    <meta name="description" content="Explore Tech Elite Automation's comprehensive services: AI & Automation, DevOps, Full-Stack Development, plus Branding, Marketing Strategy, and Business Development solutions.">
+    <meta name="keywords" content="technology services, AI solutions, DevOps consulting, full-stack development, automation services, branding services, logo design, marketing strategy, business development consulting, comprehensive marketing solutions">
+    <meta name="author" content="Tech Elite Automation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/services.html" />
+    <meta property="og:title" content="Our Services | Tech Elite Automation">
+    <meta property="og:description" content="Discover our expert services in AI, DevOps, Full-Stack Development, alongside strategic Branding, Marketing, and Business Development.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png">
+    <meta property="og:url" content="https://techeliteautomation.com/services.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ServicePage", // Using ServicePage or ItemList
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://techeliteautomation.com/services.html"
+      },
+      "headline": "Comprehensive Technology, Marketing & Business Development Solutions by Tech Elite Automation",
+      "description": "Explore our integrated service areas: AI & Automation, DevOps & Infrastructure, Full-Stack Development, and Branding, Marketing & Business Development.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tech Elite Automation Services",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "AI & Intelligent Automation",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "AI Agent Development & Process Automation",
+                  "url": "https://techeliteautomation.com/services/ai-automation.html"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "DevOps & Modern IT Infrastructure",
+             "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Cloud Optimization & Secure Infrastructure",
+                  "url": "https://techeliteautomation.com/services/devops-infrastructure.html"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Full-Stack Development & Data Engineering",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Application Development & Data Solutions",
+                  "url": "https://techeliteautomation.com/services/full-stack-data.html"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Branding, Marketing & Business Development",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Brand Strategy & Identity Design (Incl. Logo)",
+                  "url": "https://techeliteautomation.com/services/marketing-business-dev.html" // New URL
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Comprehensive Marketing Solutions & Campaigns",
+                  "url": "https://techeliteautomation.com/services/marketing-business-dev.html" // New URL
+                }
+              },
+               {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Strategic Business Development & Growth Planning",
+                  "url": "https://techeliteautomation.com/services/marketing-business-dev.html" // New URL
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tech Elite Automation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://techeliteautomation.com/assets/images/techelite-logo.png"
+        }
+      }
+    }
+    </script>
+    <!-- Google Analytics (Replace G-YOUR_GA_ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link active">Services</a></li>
+                    <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="/contact.html" class="nav-cta btn btn-primary">Get Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero-section text-center">
+            <div class="container">
+                <h1 class="page-title">Integrated Technology & Growth Services</h1>
+                <p class="page-subtitle lead">Holistic solutions combining elite technology expertise with strategic marketing and business development to drive comprehensive growth.</p>
+            </div>
+        </section>
+
+        <section id="service-categories" class="content-section">
+            <div class="container">
+                <p class="section-intro text-center">Tech Elite Automation offers a powerful blend of technical prowess and market acumen. Our high-level experts deliver specialized solutions across technology, branding, marketing, and business development. Explore our core capabilities to see how we can elevate your entire operation.</p>
+
+                <div class="service-category-card">
+                    <div class="service-category-icon-container">
+                        <img src="/assets/icons/icon-ai.svg" alt="AI & Automation Icon" class="service-category-icon">
+                    </div>
+                    <div class="service-category-content">
+                        <h2 class="service-category-title">AI & Intelligent Automation</h2>
+                        <p class="service-category-description">Transform operations with cutting-edge AI. We develop autonomous agents (Gemini, Ollama), optimize research, automate complex data extraction & file processing, and craft custom Python, Bash, and Java scripts for peak efficiency and new capabilities.</p>
+                        <a href="/services/ai-automation.html" class="btn btn-secondary">Explore AI Solutions</a>
+                    </div>
+                </div>
+
+                <div class="service-category-card">
+                     <div class="service-category-icon-container">
+                        <img src="/assets/icons/icon-devops-cloud.svg" alt="DevOps & Infrastructure Icon" class="service-category-icon">
+                    </div>
+                    <div class="service-category-content">
+                        <h2 class="service-category-title">DevOps & Modern IT Infrastructure</h2>
+                        <p class="service-category-description">Build resilient, scalable, cost-effective IT environments. Expertise in cloud (Azure) & on-prem optimization via IaC. We design secure networks, implement real-time monitoring, proactive incident response, and custom GitHub sync systems for stability and reduced costs.</p>
+                        <a href="/services/devops-infrastructure.html" class="btn btn-secondary">Explore Infrastructure Solutions</a>
+                    </div>
+                </div>
+
+                <div class="service-category-card">
+                    <div class="service-category-icon-container">
+                        <img src="/assets/icons/icon-full-stack.svg" alt="Full-Stack & Data Icon" class="service-category-icon">
+                    </div>
+                    <div class="service-category-content">
+                        <h2 class="service-category-title">Full-Stack Development & Data Engineering</h2>
+                        <p class="service-category-description">Deliver high-performance, user-centric applications and robust data solutions. We create responsive, mobile-first web apps (SEO-optimized HTML, Java, CSS), automate data processing, implement secure backups, enhance SAAS systems, and develop probabilistic QA frameworks.</p>
+                        <a href="/services/full-stack-data.html" class="btn btn-secondary">Explore Development Solutions</a>
+                    </div>
+                </div>
+
+                 <div class="service-category-card">
+                    <div class="service-category-icon-container">
+                        <!-- Use a relevant icon, e.g., a lightbulb, strategy chart, or megaphone -->
+                        <img src="/assets/icons/icon-marketing-business-dev.svg" alt="Marketing & Business Development Icon" class="service-category-icon">
+                    </div>
+                    <div class="service-category-content">
+                        <h2 class="service-category-title">Branding, Marketing & Business Development</h2>
+                        <p class="service-category-description">Accelerate growth and elevate your market presence. Guided by our high-level marketing professional, we offer comprehensive solutions: strategic brand identity (logo design, messaging), data-driven marketing campaigns, market analysis, lead generation, and tailored business development plans, ensuring tech and market strategy work synergistically for maximum impact.</p>
+                        <a href="/services/marketing-business-dev.html" class="btn btn-secondary">Explore Growth Solutions</a> <!-- Link to a new detail page -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta-contact" class="content-section alt-bg text-center">
+            <div class="container">
+                <h2 class="section-title">Ready for Integrated Growth?</h2>
+                <p class="section-intro">Unify your technology and market strategy for unparalleled results. Contact us today for a complimentary consultation to discuss how Tech Elite Automation's comprehensive solutions can drive your business forward.</p>
+                <a href="/contact.html" class="btn btn-primary btn-lg">Contact Us Today</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert technology, marketing, and business development solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Case Studies</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                        <!-- Add other social links if applicable, e.g., LinkedIn -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

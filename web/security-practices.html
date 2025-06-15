@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSP (Content Security Policy) -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com; 
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+        img-src 'self' data:; 
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.emailjs.com https://www.google-analytics.com;
+        form-action 'self'; 
+        frame-ancestors 'none'; 
+        base-uri 'self';
+        object-src 'none';">
+
+    <title>Our Security Practices | Tech Elite Automation</title>
+    <meta name="description" content="Learn about Tech Elite Automation's commitment to security, including secure development for client solutions and website security measures (HTTPS, CSP, SRI).">
+    <meta name="keywords" content="IT security practices, secure software development, website security, data protection, cybersecurity commitment, CSP, SRI">
+    <meta name="author" content="Tech Elite Automation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techeliteautomation.com/security-practices.html" />
+    <meta property="og:title" content="Our Security Practices | Tech Elite Automation">
+    <meta property="og:description" content="Detailing our robust security measures for client projects and our own online presence, ensuring trust and data integrity.">
+    <meta property="og:image" content="https://techeliteautomation.com/assets/images/techelite-og-logo.png">
+    <meta property="og:url" content="https://techeliteautomation.com/security-practices.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage", // Could also be "Article" if content is very detailed
+      "name": "Tech Elite Automation Security Practices",
+      "description": "An overview of Tech Elite Automation's commitment to security in client solutions and its own website operations.",
+      "url": "https://techeliteautomation.com/security-practices.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tech Elite Automation",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://techeliteautomation.com/assets/images/techelite-logo.png"
+        }
+      }
+    }
+    </script>
+    <!-- Google Analytics (Replace G-YOUR_GA_ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '328227363');
+    </script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="navbar-logo-link" aria-label="Tech Elite Automation Homepage">
+                <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="navbar-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+            </button>
+            <nav class="nav-menu-container" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/services.html" class="nav-link">Services</a></li>
+                    <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li><a href="/security-practices.html" class="nav-link active">Security</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="/contact.html" class="nav-cta btn btn-primary">Get Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero-section text-center">
+            <div class="container">
+                <h1 class="page-title">Our Security Practices</h1>
+                <p class="page-subtitle lead">Demonstrating our commitment to robust security in every solution we deliver and in our own operations.</p>
+            </div>
+        </section>
+
+        <section id="security-commitment" class="content-section">
+            <div class="container">
+                <h2 class="section-title-sm text-center">A Foundation of Trust & Integrity</h2>
+                <p class="section-intro text-center">At Tech Elite Automation, security is not an optional add-on; it's a core tenet woven into the fabric of our development processes and operational procedures. We understand the critical importance of protecting data and ensuring system resilience. This page outlines our approach to security for the solutions we build for clients and for this website itself.</p>
+
+                <div class="security-category">
+                    <h3 class="content-subtitle">Security in Our Client Solutions</h3>
+                    <p>When developing and implementing bespoke solutions for our clients, we prioritize security throughout the entire lifecycle:</p>
+                    <ul>
+                        <li><strong>Secure by Design:</strong> Incorporating security considerations from the initial architecture and design phases.</li>
+                        <li><strong>Least Privilege Principle:</strong> Ensuring that system components and user accounts operate with the minimum level of access necessary to perform their functions.</li>
+                        <li><strong>Data Minimization & Encryption:</strong> Advising on and implementing strategies for collecting only necessary data and protecting sensitive information both in transit and at rest.</li>
+                        <li><strong>Secure Coding Awareness:</strong> Applying best practices to mitigate common vulnerabilities (e.g., OWASP Top 10 awareness) in any custom software we develop.</li>
+                        <li><strong>Infrastructure Hardening:</strong> Implementing security best practices for cloud (Azure, etc.) and on-premises environments, including network segmentation, firewall configuration, and access controls.</li>
+                        <li><strong>Vulnerability Management Awareness:</strong> While we may not directly conduct penetration testing for all projects unless specified, we design systems with an awareness of potential vulnerabilities and advise on ongoing security maintenance.</li>
+                         <li><strong>Regular Security Reviews:</strong> For ongoing engagements, incorporating security reviews and updates as part of the maintenance cycle.</li>
+                    </ul>
+                </div>
+
+                <div class="security-category">
+                    <h3 class="content-subtitle">This Website's Security Measures (techeliteautomation.com)</h3>
+                    <p>We've implemented the following industry-standard security measures to protect this static website and its visitors:</p>
+                    <ul>
+                        <li><strong>HTTPS Encryption (SSL/TLS):</strong> All communication between your browser and this website is encrypted using HTTPS, ensuring data privacy and integrity. This is automatically provided and enforced by GitHub Pages for custom domains configured correctly.</li>
+                        <li><strong>Secure Hosting Platform (GitHub Pages):</strong> Leverages GitHub's robust infrastructure and security practices.</li>
+                        <li><strong>Content Security Policy (CSP):</strong> A CSP header is implemented via a <code>&lt;meta&gt;</code> tag to restrict the sources from which content (scripts, styles, images, etc.) can be loaded. This significantly mitigates the risk of Cross-Site Scripting (XSS) attacks. <a href="#csp-details" class="learn-more-link">[View CSP Details]</a></li>
+                        <li><strong>Subresource Integrity (SRI):</strong> For third-party JavaScript libraries and CSS files loaded from CDNs (e.g., Google Fonts, EmailJS), SRI hashes are used. This ensures that the files fetched by your browser have not been tampered with.</li>
+                        <li><strong>HTTP Security Headers:</strong> While many are set by GitHub Pages, we advocate for and ensure (where possible via meta tags or future configurations if supported) headers like:
+                            <ul>
+                                <li><code>X-Content-Type-Options: nosniff</code> (Prevents MIME-type sniffing)</li>
+                                <li><code>X-Frame-Options: DENY</code> or <code>SAMEORIGIN</code> (Protects against clickjacking - largely covered by CSP's `frame-ancestors`)</li>
+                                <li><code>Referrer-Policy: strict-origin-when-cross-origin</code> (Controls how much referrer information is sent)</li>
+                                 <li><code>Permissions-Policy</code> (To explicitly disable browser features not in use)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Static Site Architecture:</strong> Being a static website (HTML, CSS, client-side JS only), it inherently lacks many vulnerabilities common to dynamic, database-driven sites (e.g., SQL injection, server-side code execution vulnerabilities).</li>
+                        <li><strong>Secure Third-Party Integrations:</strong> We carefully vet and securely integrate essential third-party services like EmailJS for contact forms, ensuring their scripts are loaded with SRI where applicable and their service is reputable.</li>
+                    </ul>
+                </div>
+
+                <div class="security-category">
+                    <h3 class="content-subtitle">Responsible Data Handling</h3>
+                    <p>Information submitted through our contact form is transmitted securely using EmailJS to our designated email address for the sole purpose of responding to your inquiry. We do not store this personal data on our website's server. For more details, please review our <a href="/legal/privacy-policy.html">Privacy Policy</a>.</p>
+                </div>
+                 <div class="security-category">
+                    <h3 class="content-subtitle">Continuous Vigilance</h3>
+                    <p>The cybersecurity landscape is constantly evolving. Tech Elite Automation is committed to staying informed about emerging threats and best practices to ensure we provide secure solutions and maintain a safe online presence.</p>
+                </div>
+
+                 <div class="text-center mt-3">
+                    <a href="/contact.html" class="btn btn-primary">Discuss Your Security Needs</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="/assets/images/techelite-logo.png" alt="Tech Elite Automation Logo" class="footer-logo">
+                    <p>Driving innovation with expert AI, DevOps, and full-stack solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                        <li><a href="/portfolio.html">Case Studies</a></li>
+                        <li><a href="/security-practices.html">Security</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/legal/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/legal/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get In Touch</h4>
+                    <p>Email: <a href="mailto:ceo@techeliteautomation.com">ceo@techeliteautomation.com</a></p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/TechEliteAutomation" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="GitHub Profile">
+                            <img src="/assets/images/github-icon.svg" alt="GitHub" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> TechEliteAutomation.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>    
+    <script src="/js/main.js"></script>
+</body>
+</html>

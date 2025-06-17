@@ -1,0 +1,24 @@
+name: Python CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13"] # Match your project's version
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Poetry
+      run: pipx install poetry
+    - name: Install dependencies
+      run: poetry install --with dev
+    - name: Lint and Format Check
+      run: |
+        poetry run ruff check .
+        poetry run ruff format --check .
+    - name: Test with pytest
+      run: poetry run pytest

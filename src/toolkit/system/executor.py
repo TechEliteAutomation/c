@@ -1,5 +1,4 @@
 # src/toolkit/system/executor.py
-
 import subprocess
 from pathlib import Path
 
@@ -15,7 +14,8 @@ def execute_script(
              current directory.
 
     Returns:
-        A subprocess.CompletedProcess object containing the results (stdout, stderr, etc.).
+        A subprocess.CompletedProcess object containing the results (stdout, stderr,
+        etc.).
 
     Raises:
         FileNotFoundError: If the script does not exist at the given path.
@@ -28,7 +28,8 @@ def execute_script(
     print(f"Executing script: {script_path_obj}...")
 
     try:
-        # The 'check=True' argument will raise CalledProcessError on non-zero exit codes.
+        # The 'check=True' argument will raise CalledProcessError on non-zero exit
+        # codes.
         process = subprocess.run(
             ["bash", str(script_path_obj)],
             capture_output=True,
@@ -46,6 +47,10 @@ def execute_script(
 
         return process
 
+    except FileNotFoundError as e:
+        print("\nERROR: A required file or script was not found.")
+        print(f"Details: {e}")
+        sys.exit(1)
     except subprocess.CalledProcessError as e:
         print(
             f"ERROR: Script '{script_path_obj.name}' failed with exit code "

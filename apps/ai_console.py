@@ -19,7 +19,10 @@ try:
     from toolkit.utils import audio
 except ImportError as e:
     print(f"Error: Failed to import the toolkit library: {e}", file=sys.stderr)
-    print("Please ensure you are running this from the project root directory 't'.", file=sys.stderr)
+    print(
+        "Please ensure you are running this from the project root directory 't'.",
+        file=sys.stderr
+    )
     sys.exit(1)
 
 def main():
@@ -71,7 +74,10 @@ def main():
         print("\nExiting console.")
         sys.exit(0)
     except Exception as e:
-        print(f"\nCRITICAL ERROR: An unexpected error occurred: {e}", file=sys.stderr)
+        print(
+            f"\nCRITICAL ERROR: An unexpected error occurred: {e}",
+            file=sys.stderr
+        )
         print("The application will now exit.", file=sys.stderr)
         sys.exit(1)
 

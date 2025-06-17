@@ -3,7 +3,9 @@
 import subprocess
 from pathlib import Path
 
-def execute_script(script_path: Path | str, cwd: Path | str = ".") -> subprocess.CompletedProcess:
+def execute_script(
+    script_path: Path | str, cwd: Path | str = "."
+) -> subprocess.CompletedProcess:
     """
     Executes a shell script and captures its output, raising an error on failure.
 
@@ -34,22 +36,28 @@ def execute_script(script_path: Path | str, cwd: Path | str = ".") -> subprocess
             check=True,
             cwd=str(cwd)
         )
-        
+
         print(f"Script '{script_path_obj.name}' executed successfully.")
         if process.stdout:
             print(f"--- STDOUT: ---\n{process.stdout.strip()}")
         if process.stderr:
             # Stderr is not always an error; it can be used for progress or info.
             print(f"--- STDERR: ---\n{process.stderr.strip()}")
-            
+
         return process
 
     except subprocess.CalledProcessError as e:
-        print(f"ERROR: Script '{script_path_obj.name}' failed with exit code {e.returncode}.")
+        print(
+            f"ERROR: Script '{script_path_obj.name}' failed with exit code "
+            f"{e.returncode}."
+        )
         print(f"--- FAILED STDOUT: ---\n{e.stdout.strip()}")
         print(f"--- FAILED STDERR: ---\n{e.stderr.strip()}")
         # Re-raise the exception so the calling application can handle the failure.
         raise
     except Exception as e:
-        print(f"An unexpected error occurred while executing '{script_path_obj.name}': {e}")
+        print(
+            f"An unexpected error occurred while executing "
+            f"'{script_path_obj.name}': {e}"
+        )
         raise

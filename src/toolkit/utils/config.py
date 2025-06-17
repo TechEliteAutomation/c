@@ -43,10 +43,16 @@ def load_config() -> dict:
         return _config
 
     except FileNotFoundError:
-        print("❌ Configuration Error: 'config.toml' not found in the project root.")
-        print("Please copy 'config.example.toml' to 'config.toml' and add your API key.")
+        print(
+            "❌ Configuration Error: 'config.toml' not found in the project root."
+        )
+        print(
+            "Please copy 'config.example.toml' to 'config.toml' and add your API key."
+        )
         raise
 
     except tomllib.TOMLDecodeError as e:
-        print(f"❌ Configuration Error: Could not parse 'config.toml'. Error: {e}")
+        print(
+            f"❌ Configuration Error: Could not parse 'config.toml'. Error: {e}"
+        )
         raise

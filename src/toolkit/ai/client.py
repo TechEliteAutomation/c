@@ -35,7 +35,7 @@ def configure_gemini():
 def start_chat_session() -> ChatSession:
     """
     Initializes and returns a new conversational chat session with the Gemini model.
-    
+
     The session is configured using parameters from the central config.toml file.
     The returned ChatSession object maintains its own history.
 
@@ -49,11 +49,13 @@ def start_chat_session() -> ChatSession:
         temperature = config.get('ai', 'temperature', type=float)
         max_tokens = config.get('ai', 'max_output_tokens', type=int)
     except Exception as e:
-        raise RuntimeError(f"Failed to load AI chat configuration from config.toml: {e}") from e
+        raise RuntimeError(
+            f"Failed to load AI chat configuration from config.toml: {e}"
+        ) from e
 
     print(f"Initializing conversational AI model: {model_name}")
     model = genai.GenerativeModel(model_name)
-    
+
     chat_session = model.start_chat(
         history=[],
         generation_config=GenerationConfig(
@@ -80,7 +82,9 @@ def analyze_system_report(md_report_content: str, txt_report_content: str) -> st
     try:
         model_name = config.get('ai', 'model_name')
     except Exception as e:
-        raise RuntimeError(f"Failed to load AI analysis configuration from config.toml: {e}") from e
+        raise RuntimeError(
+            f"Failed to load AI analysis configuration from config.toml: {e}"
+        ) from e
 
     print(f"Initializing analysis AI model: {model_name}...")
     model = genai.GenerativeModel(model_name)

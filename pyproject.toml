@@ -1,5 +1,6 @@
+# This is the modern, standardized project metadata section (PEP 621)
 [project]
-name = "t"
+name = "c" # Changed from "t" to match your repo name, as is standard
 version = "0.1.0"
 description = "A unified toolkit for AI, media, and system utilities."
 authors = [
@@ -7,7 +8,7 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = "^3.13"
+requires-python = ">=3.13"  # <-- CRITICAL FIX APPLIED HERE
 dependencies = [
     "google-generativeai>=0.5.0",
     "python-dotenv>=1.0.0",
@@ -16,39 +17,50 @@ dependencies = [
     "beautifulsoup4>=4.12.0",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.0.0",
-    "black>=24.0.0",
-    "isort>=5.13.0",
-    "flake8>=7.0.0",
-]
-
+# This section is required by the build system
 [build-system]
-requires = ["poetry-core>=2.0.0"]
+requires = ["poetry-core>=1.5.0"]
 build-backend = "poetry.core.masonry.api"
 
-# --- Poetry Build Instructions (This is the critical part) ---
+# --- Poetry Specific Configuration ---
+
 [tool.poetry]
-# This line MUST point to "toolkit"
+name = "c" # Ensure this matches the project name
+version = "0.1.0" # Ensure this matches the project version
+description = "A unified toolkit for AI, media, and system utilities."
+authors = ["TechEliteAutomation <at253341@gmail.com>"]
+license = "MIT"
+readme = "README.md"
 packages = [{include = "toolkit", from = "src"}]
-scripts = { amazon-gen = "apps.amazon_generator:main" }
+
+[tool.poetry.dependencies]
+# The main python version for poetry
+python = "^3.13"
+# Main dependencies are now read from the [project] table above,
+# so this list can be kept in sync or left empty if using a modern Poetry version.
+# For compatibility, we list them here as well.
+google-generativeai = ">=0.5.0"
+python-dotenv = ">=1.0.0"
+PyPDF2 = ">=3.0.0"
+requests = ">=2.31.0"
+beautifulsoup4 = ">=4.12.0"
+
+# This is the ONLY place dev dependencies should be defined
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.4.0"
+pytest = ">=8.0.0"
 
 # --- Tool Configurations ---
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.11.13"
-black = "^25.1.0"
-pytest = "^8.4.0"
-
-[tool.black]
+# This is the ONLY tool configuration needed now
+[tool.ruff]
 line-length = 88
-target-version = ['py313']
+target-version = "py313"
 
-[tool.isort]
-profile = "black"
-line_length = 88
+[tool.ruff.lint]
+# Emulate flake8, isort, and more
+select = ["E", "F", "W", "I"]
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = "E203, E501"
+[tool.ruff.format]
+# Ruff's formatter is black-compatible by default
+quote-style = "double"

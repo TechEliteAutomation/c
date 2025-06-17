@@ -1,4 +1,3 @@
-### .github/workflows/ci.yml
 name: Python CI
 on: [push, pull_request]
 jobs:
@@ -17,11 +16,11 @@ jobs:
       run: pipx install poetry
     - name: Install dependencies
       run: poetry install --with dev
-    - name: Auto Fix Formatting
-      run: poetry run ruff format .
     - name: Lint and Format Check
       run: |
         poetry run ruff check .
         poetry run ruff format --check .
+    - name: Debug Test Discovery
+      run: poetry run pytest --collect-only
     - name: Test with pytest
       run: poetry run pytest

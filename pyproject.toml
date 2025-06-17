@@ -64,3 +64,8 @@ select = ["E", "F", "W", "I"]
 [tool.ruff.format]
 # Ruff's formatter is black-compatible by default
 quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]

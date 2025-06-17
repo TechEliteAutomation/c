@@ -1,4 +1,5 @@
 # src/toolkit/system/executor.py
+import sys
 import subprocess
 from pathlib import Path
 

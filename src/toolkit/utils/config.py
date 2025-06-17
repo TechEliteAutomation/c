@@ -6,6 +6,7 @@ from pathlib import Path
 # This variable will cache the loaded configuration to avoid re-reading the file.
 _config = None
 
+
 def get_project_root() -> Path:
     """Finds the project's root directory by looking for pyproject.toml."""
     # Start from the current file's directory and go up
@@ -14,7 +15,10 @@ def get_project_root() -> Path:
         if (current_path / "pyproject.toml").exists():
             return current_path
         current_path = current_path.parent
-    raise FileNotFoundError("Could not find the project root (containing pyproject.toml).")
+    raise FileNotFoundError(
+        "Could not find the project root (containing pyproject.toml)."
+    )
+
 
 def load_config() -> dict:
     """
@@ -43,16 +47,12 @@ def load_config() -> dict:
         return _config
 
     except FileNotFoundError:
-        print(
-            "❌ Configuration Error: 'config.toml' not found in the project root."
-        )
+        print("❌ Configuration Error: 'config.toml' not found in the project root.")
         print(
             "Please copy 'config.example.toml' to 'config.toml' and add your API key."
         )
         raise
 
     except tomllib.TOMLDecodeError as e:
-        print(
-            f"❌ Configuration Error: Could not parse 'config.toml'. Error: {e}"
-        )
+        print(f"❌ Configuration Error: Could not parse 'config.toml'. Error: {e}")
         raise

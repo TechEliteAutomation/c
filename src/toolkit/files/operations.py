@@ -4,6 +4,7 @@ import glob
 import os
 from pathlib import Path
 
+
 def find_latest_file(pattern: str, search_path: str = ".") -> Path | None:
     """
     Finds the most recently modified file matching a glob pattern.
@@ -27,6 +28,7 @@ def find_latest_file(pattern: str, search_path: str = ".") -> Path | None:
         print(f"Error finding latest file with pattern '{pattern}': {e}")
         return None
 
+
 def read_file(filepath: Path | str) -> str:
     """
     Reads the entire content of a file.
@@ -38,7 +40,7 @@ def read_file(filepath: Path | str) -> str:
         The content of the file as a string.
     """
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         print(f"Read content from: {filepath}")
         return content
@@ -48,6 +50,7 @@ def read_file(filepath: Path | str) -> str:
     except Exception as e:
         print(f"Error reading file {filepath}: {e}")
         raise
+
 
 def save_file(content: str, filepath: Path | str):
     """
@@ -60,7 +63,7 @@ def save_file(content: str, filepath: Path | str):
     try:
         path_obj = Path(filepath)
         path_obj.parent.mkdir(parents=True, exist_ok=True)
-        with open(path_obj, 'w', encoding='utf-8') as f:
+        with open(path_obj, "w", encoding="utf-8") as f:
             f.write(content)
         print(f"Content saved to: {filepath}")
     except Exception as e:

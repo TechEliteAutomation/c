@@ -1,84 +1,54 @@
-#!/usr/bin/env python3
-#
-# Application Entry Point: System Analyzer
-#
-# This script orchestrates the system analysis process:
-# 1. Executes the system report generation script.
-# 2. Finds the latest generated Markdown and Text reports.
-# 3. Reads the content of both reports.
-# 4. Sends the content to the Gemini AI for analysis.
-# 5. Saves the resulting HTML analysis to the configured reports directory.
-#
-import sys
+# apps/system_analyzer.py
+
 from pathlib import Path
-from datetime import datetime
 
-# Ensure the 'src' directory is in the Python path to allow toolkit imports
-# This makes the app runnable from the project root (e.g., python3 apps/system_analyzer.py)
-project_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(project_root / 'src'))
-
-from toolkit.utils import config
-from toolkit.system import executor
-from toolkit.files import operations as file_ops
+# All imports are at the top, and we rely on Poetry's installation
+# to make the 'toolkit' package available.
 from toolkit.ai import client as ai_client
+from toolkit.files import operations as file_ops
+from toolkit.system import executor
+from toolkit.utils import config
 
-def main():
-    """Main function to run the system analysis workflow."""
-    print("--- Starting System Analyzer Application ---")
 
+def analyze_system_and_generate_report():
+    """
+    Analyzes the system, generates a report using an AI model,
+    and saves it to a file.
+    """
+    print("Starting system analysis...")
     try:
-        # 1. Load configuration from the central config.toml file
-        print("Loading configuration...")
-        report_dir_str = config.get('system_report', 'report_directory')
-        report_dir = Path(report_dir_str)
-        
-        # Define the path to the report generation script relative to the project root
-        report_script_path = project_root / 'scripts' / 'system' / 'generate_system_report.sh'
-        print(f"Report script located at: {report_script_path}")
+        # 1. Load configuration
+        cfg = config.load_config()
+        ai_cfg = cfg.get("ai", {})
+        system_cfg = cfg.get("system_report", {})
 
-        # 2. Execute the shell script to generate system reports
-        executor.execute_script(report_script_path)
+        # 2. Generate the system report content
+        print("Gathering system information...")
+        system_info = executor.get_system_info()
 
-        # 3. Find the latest generated report files
-        print(f"Searching for latest reports in: {report_dir}")
-        md_report_path = file_ops.find_latest_file("system_report_*.md", search_path=str(report_dir))
-        txt_report_path = file_ops.find_latest_file("system_report_detailed_*.txt", search_path=str(report_dir))
+        # 3. Initialize AI client and generate the HTML report
+        print("Initializing AI client...")
+        ai = ai_client.AIClient(
+            provider=ai_cfg.get("provider"), api_key=ai_cfg.get("api_key")
+        )
 
-        if not md_report_path or not txt_report_path:
-            print("ERROR: Could not find the generated report files. Aborting.")
-            sys.exit(1)
+        print("Generating HTML report with AI...")
+        html_report = ai.generate_system_report(system_info)
 
-        # 4. Read the content of the reports
-        md_content = file_ops.read_file(md_report_path)
-        txt_content = file_ops.read_file(txt_report_path)
+        # 4. Save the report
+        output_path_str = system_cfg.get("output_path", "system_report.html")
+        output_path = Path(output_path_str)
+        print(f"Saving report to {output_path.resolve()}...")
+        file_ops.save_text_to_file(html_report, output_path)
 
-        # 5. Send the report content to the AI for analysis
-        # The AI client handles its own configuration (API key, model name)
-        html_analysis = ai_client.analyze_system_report(md_content, txt_content)
+        print("\n✅ System analysis report generated successfully!")
 
-        if not html_analysis:
-            print("ERROR: AI analysis returned no content. Aborting.")
-            sys.exit(1)
+    except FileNotFoundError:
+        print("\n❌ ERROR: config.toml not found.")
+        print("Please ensure a valid config.toml file exists in the project root.")
+    except Exception as e:
+        print(f"\n❌ An unexpected error occurred: {e}")
 
-        # 6. Save the final HTML analysis report
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        output_filename = f"AI_Analysis_Report_{timestamp}.html"
-        output_path = report_dir / output_filename
-        
-        file_ops.save_file(html_analysis, output_path)
-        
-        print("\n--- System Analysis Complete ---")
-        print(f"✅ Success! The final analysis report has been saved to:")
-        print(f"   {output_path}")
-
-    except FileNotFoundError as e:
-        print(f"\nERROR: A required file or script was not found.")
-        print(f"Details: {e}")
-        sys.exit(1)
-    except (ValueError, RuntimeError, Exception) as e:
-        print(f"\nAn unexpected error occurred during the process: {e}")
-        sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    analyze_system_and_generate_report()

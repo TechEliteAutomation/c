@@ -1,7 +1,8 @@
 # src/toolkit/system/executor.py
-import sys
 import subprocess
+import sys
 from pathlib import Path
+
 
 def execute_script(
     script_path: Path | str, cwd: Path | str = "."
@@ -36,7 +37,7 @@ def execute_script(
             capture_output=True,
             text=True,
             check=True,
-            cwd=str(cwd)
+            cwd=str(cwd),
         )
 
         print(f"Script '{script_path_obj.name}' executed successfully.")

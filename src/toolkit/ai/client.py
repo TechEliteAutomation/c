@@ -1,13 +1,16 @@
 # src/toolkit/ai/client.py
 
 import os
+
 import google.generativeai as genai
-from google.generativeai.types import GenerationConfig
 from google.generativeai.generative_models import ChatSession
+from google.generativeai.types import GenerationConfig
+
 from toolkit.utils import config
 
 # A flag to ensure this setup runs only once per session for efficiency.
 _is_configured = False
+
 
 def configure_gemini():
     """
@@ -32,6 +35,7 @@ def configure_gemini():
         print(f"Failed to configure Gemini client. Error: {e}")
         raise
 
+
 def start_chat_session() -> ChatSession:
     """
     Initializes and returns a new conversational chat session with the Gemini model.
@@ -45,9 +49,9 @@ def start_chat_session() -> ChatSession:
     configure_gemini()
 
     try:
-        model_name = config.get('ai', 'model_name')
-        temperature = config.get('ai', 'temperature', type=float)
-        max_tokens = config.get('ai', 'max_output_tokens', type=int)
+        model_name = config.get("ai", "model_name")
+        temperature = config.get("ai", "temperature", type=float)
+        max_tokens = config.get("ai", "max_output_tokens", type=int)
     except Exception as e:
         raise RuntimeError(
             f"Failed to load AI chat configuration from config.toml: {e}"
@@ -59,11 +63,11 @@ def start_chat_session() -> ChatSession:
     chat_session = model.start_chat(
         history=[],
         generation_config=GenerationConfig(
-            temperature=temperature,
-            max_output_tokens=max_tokens
-        )
+            temperature=temperature, max_output_tokens=max_tokens
+        ),
     )
     return chat_session
+
 
 def analyze_system_report(md_report_content: str, txt_report_content: str) -> str:
     """
@@ -80,7 +84,7 @@ def analyze_system_report(md_report_content: str, txt_report_content: str) -> st
     configure_gemini()
 
     try:
-        model_name = config.get('ai', 'model_name')
+        model_name = config.get("ai", "model_name")
     except Exception as e:
         raise RuntimeError(
             f"Failed to load AI analysis configuration from config.toml: {e}"
@@ -101,6 +105,7 @@ def analyze_system_report(md_report_content: str, txt_report_content: str) -> st
         print(f"An error occurred during the Gemini API call: {e}")
         raise
 
+
 def _build_analysis_prompt(md_content: str, txt_content: str) -> str:
     """Builds the detailed prompt for the system analysis task."""
     # This is a long, static prompt. Its content remains unchanged.
@@ -116,26 +121,54 @@ The HTML analysis should:
 5.  GPU: If present.
 6.  Network: Interface names/states, default route. Note privacy omissions.
 7.  Packages/Services: Notable Arch Linux packages (pacman) or systemd services.
-8.  Issues: Identify potential problems, bottlenecks, optimizations, security considerations.
-9.  Recommendations: Clear next steps for maintenance/improvement for an Arch Linux system.
+8.  Issues: Identify potential problems, bottlenecks, optimizations, and
+    security considerations.
+9.  Recommendations: Clear next steps for maintenance/improvement for an Arch
+    Linux system.
 10. HTML Structure: Use <h1>, <h2>, <p>, <ul>/<ol>, <table>, <code>, <pre>.
 11. Output: ONLY the HTML document (<!DOCTYPE html> to </html>).
 12. Styling (Solarized Dark Theme - embed CSS in <style> in <head>):
-    body {{ background-color: #002b36; color: #839496; font-family: sans-serif; margin: 20px; line-height: 1.6; }}
-    h1, h2, h3 {{ color: #268bd2; border-bottom: 1px solid #586e75; padding-bottom: 0.3em; margin-top: 1.5em; }}
+    body {{
+        background-color: #002b36; color: #839496; font-family: sans-serif;
+        margin: 20px; line-height: 1.6;
+    }}
+    h1, h2, h3 {{
+        color: #268bd2; border-bottom: 1px solid #586e75;
+        padding-bottom: 0.3em; margin-top: 1.5em;
+    }}
     h1 {{ font-size: 2em; }} h2 {{ font-size: 1.5em; }}
-    table {{ border-collapse: collapse; width: 95%; margin: 1em auto; box-shadow: 0 2px 3px rgba(0,0,0,0.1); }}
+    table {{
+        border-collapse: collapse; width: 95%; margin: 1em auto;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    }}
     th, td {{ border: 1px solid #586e75; padding: 10px 12px; text-align: left; }}
     th {{ background-color: #073642; color: #93a1a1; font-weight: bold; }}
     tr:nth-child(even) {{ background-color: #073642; }}
-    pre, code {{ background-color: #073642; color: #b58900; padding: 0.2em 0.4em; border-radius: 4px; font-family: 'Courier New', Courier, monospace; }}
-    pre {{ padding: 1em; overflow-x: auto; display: block; white-space: pre-wrap; word-wrap: break-word; border: 1px solid #586e75; }}
+    pre, code {{
+        background-color: #073642; color: #b58900; padding: 0.2em 0.4em;
+        border-radius: 4px; font-family: 'Courier New', Courier, monospace;
+    }}
+    pre {{
+        padding: 1em; overflow-x: auto; display: block; white-space: pre-wrap;
+        word-wrap: break-word; border: 1px solid #586e75;
+    }}
     p code {{ display: inline; padding: 0.1em 0.3em; }}
-    ul, ol {{ margin-left: 25px; padding-left: 0; }} li {{ margin-bottom: 0.5em; }}
-    a {{ color: #b58900; text-decoration: none; }} a:hover {{ color: #cb4b16; text-decoration: underline; }}
-    .overview-box {{ background-color: #073642; border: 1px solid #586e75; padding: 15px; margin-bottom: 20px; border-radius: 5px; }}
-    .recommendations {{ border-left: 3px solid #859900; padding-left: 15px; background-color: #073642; }}
-    .issues {{ border-left: 3px solid #dc322f; padding-left: 15px; background-color: #073642; }}
+    ul, ol {{ margin-left: 25px; padding-left: 0; }}
+    li {{ margin-bottom: 0.5em; }}
+    a {{ color: #b58900; text-decoration: none; }}
+    a:hover {{ color: #cb4b16; text-decoration: underline; }}
+    .overview-box {{
+        background-color: #073642; border: 1px solid #586e75; padding: 15px;
+        margin-bottom: 20px; border-radius: 5px;
+    }}
+    .recommendations {{
+        border-left: 3px solid #859900; padding-left: 15px;
+        background-color: #073642;
+    }}
+    .issues {{
+        border-left: 3px solid #dc322f; padding-left: 15px;
+        background-color: #073642;
+    }}
 
 System Information:
 ---

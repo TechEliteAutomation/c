@@ -1,1 +1,1 @@
-
+poetry run ruff check .

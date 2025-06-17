@@ -3,47 +3,61 @@
 import argparse
 from pathlib import Path
 
-# This is the corrected part.
-# The import must be from "toolkit" to match the directory name.
-from toolkit.ai.client import configure_gemini
+# We now rely on Poetry to handle the path.
+# All imports are clean and at the top.
+from toolkit.ai import client as ai_client
 from toolkit.amazon import generate_description_from_text
+from toolkit.files import operations as file_ops
+from toolkit.utils import config
+
 
 def main():
-    """Main function to run the Amazon description generator CLI."""
-    try:
-        configure_gemini()
-    except ValueError as e:
-        print(e)
-        return
-
+    """
+    CLI tool to generate an Amazon product description from a text file.
+    """
     parser = argparse.ArgumentParser(
-        description="Generate an Amazon product description from a text file of features."
+        description=(
+            "Generate an Amazon product description from a text file of features."
+        )
     )
     parser.add_argument(
-        "input_file",
-        type=Path,
-        help="Path to the text file containing product features.",
+        "input_file", type=str, help="Path to the text file with product features."
+    )
+    parser.add_argument(
+        "output_file",
+        type=str,
+        nargs="?",
+        default="product_description.txt",
+        # This 'help' string is now broken into multiple lines to fix E501
+        help=(
+            "Path to save the generated description "
+            "(default: product_description.txt)."
+        ),
     )
     args = parser.parse_args()
 
-    input_path: Path = args.input_file
-    if not input_path.is_file():
-        print(f"❌ Error: Input file not found at '{input_path}'")
-        return
+    try:
+        # Load environment variables for API keys
+        config.load_dotenv()
+        ai_client.configure_gemini()
 
-    print(f"📄 Reading product features from: {input_path}")
-    product_features = input_path.read_text()
+        print(f"Reading product features from: {args.input_file}")
+        features = file_ops.read_text_from_file(Path(args.input_file))
 
-    print("🤖 Generating description with Gemini... (This may take a moment)")
-    description = generate_description_from_text(product_features)
+        print("Generating product description with AI...")
+        description = generate_description_from_text(features)
 
-    if description:
-        output_path = input_path.parent / f"generated_description_{input_path.stem}.txt"
-        output_path.write_text(description)
-        print(f"\n✅ Success! Description saved to: {output_path}")
-        print("\n--- Generated Description ---")
-        print(description)
-        print("---------------------------")
+        if description:
+            print(f"Saving generated description to: {args.output_file}")
+            file_ops.save_text_to_file(description, Path(args.output_file))
+            print("\n✅ Description generated successfully!")
+        else:
+            print("\n❌ Failed to generate a description. Check for API errors above.")
+
+    except FileNotFoundError:
+        print(f"❌ Error: Input file not found at '{args.input_file}'")
+    except Exception as e:
+        print(f"\n❌ An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert Affinity Calendar - 2025</title>
+    <style>
+        /* Solarized Dark Color Palette */
+        :root {
+            --base03:  #002b36;
+            --base02:  #073642;
+            --base01:  #586e75;
+            --base00:  #657b83;
+            --base0:   #839496;
+            --base1:   #93a1a1;
+            --yellow:  #b58900;
+            --orange:  #cb4b16;
+            --red:     #dc322f;
+            --magenta: #d33682;
+            --violet:  #6c71c4;
+            --blue:    #268bd2;
+            --cyan:    #2aa198;
+            --green:   #859900;
+        }
+
+        /* General Body & Typography */
+        body {
+            background-color: var(--base03);
+            color: var(--base0);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--base02);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: var(--base1);
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--base01);
+            padding-bottom: 1rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 0.95em;
+        }
+
+        thead {
+            background-color: var(--base03);
+        }
+
+        th {
+            color: var(--blue);
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--base01);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--base01);
+            transition: background-color 0.2s ease-in-out;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: var(--base03);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: var(--base01);
+            color: var(--base03);
+        }
+
+        td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        /* Affinity Score Color Coding */
+        td[data-score] {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .score-100, .score-95 { color: var(--green); } /* 90-100% */
+        .score-88, .score-85, .score-82, .score-80 { color: var(--cyan); } /* 80-89% */
+        .score-78, .score-77, .score-75, .score-72, .score-70 { color: var(--blue); } /* 70-79% */
+        .score-68, .score-65 { color: var(--yellow); } /* 60-69% */
+        .score-60, .score-55 { color: var(--orange); } /* 50-60% */
+        .score-40, .score-35, .score-20 { color: var(--red); } /* < 50% */
+        
+        .artist { font-weight: 600; color: var(--base1); }
+        .venue { font-size: 0.9em; color: var(--base00); }
+
+
+        /* Print-Friendly Styles */
+        @media print {
+            @page {
+                size: letter landscape;
+                margin: 0.75in;
+            }
+
+            body {
+                background-color: #fff !important;
+                color: #000 !important;
+                font-size: 10pt;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                background-color: #fff !important;
+            }
+
+            h1 {
+                text-align: left;
+                font-weight: bold;
+                border-bottom: 2px solid #ccc;
+                color: #000 !important;
+            }
+
+            table, thead, tbody, th, td, tr {
+                border-color: #ccc !important;
+                color: #000 !important;
+            }
+            
+            thead {
+                background-color: #eee !important;
+            }
+
+            th {
+                color: #000 !important;
+                font-weight: bold;
+                background-color: #f2f2f2 !important; /* Ensure headers stand out in print */
+            }
+
+            tbody tr:nth-child(even) {
+                 background-color: #f9f9f9 !important; /* Maintain striping for readability */
+            }
+
+            tbody tr {
+                 page-break-inside: avoid;
+            }
+
+            td[data-score] {
+                font-weight: bold;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Summer 2025 Concert Affinity</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Event / Artist(s)</th>
+                    <th>Date / Venue</th>
+                    <th>Affinity Score</th>
+                    <th>Justification</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="artist">311</span></td>
+                    <td>Fri, Jun 20<br><span class="venue">Ovation Hall at Ocean Casino Resort</span></td>
+                    <td data-score="100" class="score-100">100%</td>
+                    <td>Direct match. This artist is a core component of your music collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Incubus</span></td>
+                    <td>Fri, Jun 27<br><span class="venue">Etess Arena at Hard Rock Hotel & Casino</span></td>
+                    <td data-score="95" class="score-95">95%</td>
+                    <td>Direct match. This artist is a core component of your music collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Stick Figure, Stephen Marley & The Hip Abduction</span></td>
+                    <td>Fri, Jun 20<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="88" class="score-88">88%</td>
+                    <td>Strong genre overlap. The reggae style of Stick Figure and Stephen Marley aligns with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Slightly Stoopid</span></td>
+                    <td>Sun, Jun 22<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="85" class="score-85">85%</td>
+                    <td>Strong genre overlap. The reggae/rock fusion is very similar to other artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Counting Crows & The Gaslight Anthem</span></td>
+                    <td>Sat, Jun 28<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="82" class="score-82">82%</td>
+                    <td>Strong genre affinity. The alternative rock of the Counting Crows and The Gaslight Anthem strongly aligns with your taste.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Coheed and Cambria & Taking Back Sunday</span></td>
+                    <td>Fri, Aug 29<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="80" class="score-80">80%</td>
+                    <td>Strong genre affinity. The alternative rock sound of these bands is very similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The Offspring, Jimmy Eat World & New Found Glory</span></td>
+                    <td>Sat, Aug 2<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="78" class="score-78">78%</td>
+                    <td>Strong genre affinity. The punk rock sound of these bands is very similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Goo Goo Dolls & Dashboard Confessional</span></td>
+                    <td>Fri, Aug 1<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="77" class="score-77">77%</td>
+                    <td>Strong genre affinity. The alternative rock sound of these bands is very similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Jack's Mannequin</span></td>
+                    <td>Thu, Jun 26<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="75" class="score-75">75%</td>
+                    <td>Strong genre affinity. The alternative rock sound is very similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Streetlight Manifesto</span></td>
+                    <td>Fri, Jun 27<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="75" class="score-75">75%</td>
+                    <td>Strong genre affinity. The ska punk sound is very similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Def Leppard</span></td>
+                    <td>Sat, Jun 28<br><span class="venue">Borgata Event Center</span></td>
+                    <td data-score="72" class="score-72">72%</td>
+                    <td>Genre affinity. The rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Robin Trower</span></td>
+                    <td>Tue, Jun 17<br><span class="venue">Hackensack Meridian Health Theatre at the Count Basie Center for the Arts</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The Gaslight Anthem</span></td>
+                    <td>Sun, Aug 10<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The rock/punk rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Dropkick Murphys & Bad Religion</span></td>
+                    <td>Wed, Aug 13<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The punk rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Bouncing Souls</span></td>
+                    <td>Sat, Aug 16<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The punk rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Chevelle</span></td>
+                    <td>Sat, Aug 23<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The alternative metal sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Steve Miller Band</span></td>
+                    <td>Tue, Aug 26<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">James Taylor</span></td>
+                    <td>Sat, Aug 30<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="70" class="score-70">70%</td>
+                    <td>Genre affinity. The folk/rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Dispatch</span></td>
+                    <td>Fri, Jul 4<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="68" class="score-68">68%</td>
+                    <td>Genre affinity. The indie rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Dinosaur Jr. & Snail Mail</span></td>
+                    <td>Sat, Jul 19<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="68" class="score-68">68%</td>
+                    <td>Genre affinity. The indie rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Guster & The Mountain Goats</span></td>
+                    <td>Fri, Aug 1<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="68" class="score-68">68%</td>
+                    <td>Genre affinity. The indie rock sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The Red Clay Strays</span></td>
+                    <td>Fri, Aug 29<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="68" class="score-68">68%</td>
+                    <td>Genre affinity. The rock/soul sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Dogs in a Pile</span></td>
+                    <td>Sun, Aug 31<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="68" class="score-68">68%</td>
+                    <td>Genre affinity. The jam band sound is similar to artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Reverend Horton Heat</span></td>
+                    <td>Tue, Jun 17<br><span class="venue">The Vogel at Count Basie Center for the Arts</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The psychobilly sound has some overlap with the rock artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">George Clinton & Parliament Funkadelic</span></td>
+                    <td>Sun, Jun 29<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The funk sound has some overlap with the R&B artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Gary Clark Jr.</span></td>
+                    <td>Sat, Jul 5<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The blues/rock sound has some overlap with the rock artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Blues Traveler and Gin Blossoms</span></td>
+                    <td>Sat, Jul 19<br><span class="venue">Ovation Hall at Ocean Casino Resort</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The alternative rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Styx, Kevin Cronin & Don Felder</span></td>
+                    <td>Sun, Jul 20<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The classic rock sound has some overlap with the rock artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Toto, Men At Work, & Christopher Cross</span></td>
+                    <td>Fri, Jul 25<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The rock/pop sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Chicago</span></td>
+                    <td>Sat, Jul 26<br><span class="venue">Hard Rock Live at the Etess Arena</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Chicago</span></td>
+                    <td>Sun, Jul 27<br><span class="venue">Hard Rock Live at the Etess Arena</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The Head and the Heart</span></td>
+                    <td>Thu, Jul 31<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The indie folk sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Yacht Rock Revue</span></td>
+                    <td>Sat, Aug 2<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The soft rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Rob Thomas</span></td>
+                    <td>Wed, Aug 13<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="65" class="score-65">65%</td>
+                    <td>Genre affinity. The pop rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Happy Together Tour</span></td>
+                    <td>Thu, Jun 19<br><span class="venue">Hackensack Meridian Health Theatre at the Count Basie Center for the Arts</span></td>
+                    <td data-score="60" class="score-60">60%</td>
+                    <td>Genre affinity. The pop sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">James Arthur</span></td>
+                    <td>Sat, Jun 28<br><span class="venue">Ovation Hall at Ocean Casino Resort</span></td>
+                    <td data-score="60" class="score-60">60%</td>
+                    <td>Genre affinity. The pop sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">I Want My 80's Tour</span></td>
+                    <td>Fri, Jul 11<br><span class="venue">Hard Rock Live at Etess Arena</span></td>
+                    <td data-score="60" class="score-60">60%</td>
+                    <td>Genre affinity. The 80s pop/rock sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">KIDZ BOP LIVE</span></td>
+                    <td>Sat, Jul 12<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="60" class="score-60">60%</td>
+                    <td>Genre affinity. The pop sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Big Time Rush</span></td>
+                    <td>Tue, Jul 22<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="60" class="score-60">60%</td>
+                    <td>Genre affinity. The pop sound has some overlap with artists in your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Hispanic Culture & Heritage Celebration with Los Lobos and Flor de Toloache</span></td>
+                    <td>Thu, Jun 19<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the rock artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Juneteenth NJ Festival</span></td>
+                    <td>Sat, Jun 21<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the hip hop/R&B artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Damian and Stephen Marley</span></td>
+                    <td>Sat, Jul 26<br><span class="venue">Ovation Hall at Ocean Resort Casino</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the reggae artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Nelly with Ja Rule, Eve, & Special Guests</span></td>
+                    <td>Sat, Jul 26<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the hip hop/R&B artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Ashanti</span></td>
+                    <td>Fri, Aug 1<br><span class="venue">Ovation Hall at Ocean Casino Resort</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the R&B artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The O'Jays</span></td>
+                    <td>Sat, Aug 2<br><span class="venue">Borgata Event Center</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the R&B/soul artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Lil Wayne</span></td>
+                    <td>Sun, Aug 3<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the hip hop artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Cypress Hill & Atmosphere</span></td>
+                    <td>Sun, Aug 17<br><span class="venue">The Stone Pony Summer Stage</span></td>
+                    <td data-score="55" class="score-55">55%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the hip hop artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Sasha Velour</span></td>
+                    <td>Thu, Jun 26<br><span class="venue">The Vogel at Count Basie Center for the Arts</span></td>
+                    <td data-score="40" class="score-40">40%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the pop artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Buddy Guy</span></td>
+                    <td>Mon, Jul 14<br><span class="venue">Hackensack Meridian Health Theatre at the Count Basie Center for the Arts</span></td>
+                    <td data-score="40" class="score-40">40%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the blues artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Jason Isbell & The 400 Unit</span></td>
+                    <td>Wed, Jul 16<br><span class="venue">Hackensack Meridian Health Theatre at the Count Basie Center for the Arts</span></td>
+                    <td data-score="40" class="score-40">40%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the rock artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Rod Stewart & Richard Marx</span></td>
+                    <td>Fri, Jul 18<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="40" class="score-40">40%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the rock/pop artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">The Moody Blues' John Lodge</span></td>
+                    <td>Sat, Jul 19<br><span class="venue">The Vogel at Count Basie Center for the Arts</span></td>
+                    <td data-score="40" class="score-40">40%</td>
+                    <td>Relational affinity. While not a direct genre match, there is some crossover with the rock artists you enjoy.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Summer of Loud: Parkway Drive, Killswitch Engage, I Prevail, & Beartooth</span></td>
+                    <td>Thu, Jul 24<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="35" class="score-35">35%</td>
+                    <td>Weak genre match. The metal sound is not a strong match with your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Pantera</span></td>
+                    <td>Thu, Jul 31<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="35" class="score-35">35%</td>
+                    <td>Weak genre match. The metal sound is not a strong match with your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">VOLBEAT & Halestorm</span></td>
+                    <td>Sun, Aug 10<br><span class="venue">PNC Bank Arts Center</span></td>
+                    <td data-score="35" class="score-35">35%</td>
+                    <td>Weak genre match. The metal/rock sound is not a strong match with your collection.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Gabriel Iglesias</span></td>
+                    <td>Sat, Aug 30<br><span class="venue">Borgata Event Center</span></td>
+                    <td data-score="20" class="score-20">20%</td>
+                    <td>No genre match. This is a comedy show.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Free Summer Concert Series</span></td>
+                    <td>Sat, Jun 21<br><span class="venue">Gardner's Basin</span></td>
+                    <td data-score="20" class="score-20">20%</td>
+                    <td>Insufficient information. Artist and genre are unverified.</td>
+                </tr>
+                <tr>
+                    <td><span class="artist">Free Summer Concert Series</span></td>
+                    <td>Sat, Jul 26<br><span class="venue">Gardner's Basin</span></td>
+                    <td data-score="20" class="score-20">20%</td>
+                    <td>Insufficient information. Artist and genre are unverified.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

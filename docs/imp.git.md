@@ -5,9 +5,6 @@
 ### **Core Objective**
 To execute a unified, systematic overhaul of the 'c' monorepo and the "Tech Elite Automation" website it contains. This plan merges the goals of the `git.audit.report.md` and `imp.tea.md`, creating a single, optimally sequenced workflow that addresses repository professionalism, CI/CD automation, website deployment, comprehensive SEO, and security hardening.
 
-### **Persona**
-You are an Arch Linux power user with a 100 WPM typing speed and deep familiarity with Git, shell scripting, and Python development environments. The following instructions are tailored for maximum speed and technical depth, assuming a high level of proficiency.
-
 ---
 
 ### **1. Situational & Opportunity Analysis**

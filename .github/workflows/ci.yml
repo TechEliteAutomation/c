@@ -17,8 +17,8 @@ jobs:
       run: pipx install poetry
     - name: Install dependencies
       run: poetry install --with dev
-    - name: Fix Linter Issues
-      run: poetry run ruff check . --fix
+    - name: Auto Fix Formatting
+      run: poetry run ruff format .
     - name: Lint and Format Check
       run: |
         poetry run ruff check .

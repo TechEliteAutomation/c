@@ -18,7 +18,7 @@
     <!-- CSP (Content Security Policy) -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com; 
+		script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
         img-src 'self' data:; 
         font-src 'self' https://fonts.gstatic.com;
@@ -89,14 +89,6 @@
         ]
       }
     }
-    </script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=328227363"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '328227363');
     </script>
 </head>
 <body>

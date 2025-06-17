@@ -15,10 +15,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSP (Content Security Policy) -->
+    <!-- CSP (Content Security Policy) - Adjust as needed -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        script-src 'self' https://cdn.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com;
+        script-src 'self' 'unsafe-inline' https://cdn.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
         img-src 'self' data:; 
         font-src 'self' https://fonts.gstatic.com;
@@ -27,7 +27,7 @@
         frame-ancestors 'none'; 
         base-uri 'self';
         object-src 'none';">
-
+        
     <title>Our Security Practices | Tech Elite Automation</title>
     <meta name="description" content="Learn about Tech Elite Automation's commitment to security, including secure development for client solutions and website security measures (HTTPS, CSP, SRI).">
     <meta name="keywords" content="IT security practices, secure software development, website security, data protection, cybersecurity commitment, CSP, SRI">

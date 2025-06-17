@@ -30,8 +30,7 @@ def main():
         default="product_description.txt",
         # This 'help' string is now broken into multiple lines to fix E501
         help=(
-            "Path to save the generated description "
-            "(default: product_description.txt)."
+            "Path to save the generated description (default: product_description.txt)."
         ),
     )
     args = parser.parse_args()

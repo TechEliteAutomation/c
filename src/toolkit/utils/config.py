@@ -1,11 +1,11 @@
 # src/my_toolkit/utils/config.py
 
 import tomllib  # Use the standard library TOML parser
+import toml
 from pathlib import Path
 
 # This variable will cache the loaded configuration to avoid re-reading the file.
 _config = None
-
 
 def get_project_root() -> Path:
     """Finds the project's root directory by looking for pyproject.toml."""
@@ -56,3 +56,13 @@ def load_config() -> dict:
     except tomllib.TOMLDecodeError as e:
         print(f"❌ Configuration Error: Could not parse 'config.toml'. Error: {e}")
         raise
+
+# Add this function to load the [axiom] section from your config
+def get_axiom_config():
+    """Loads the Axiom-specific configuration from the root config.toml file."""
+    try:
+        with open("config.toml", "r") as f:
+            config = toml.load(f)
+        return config.get("axiom", {})
+    except FileNotFoundError:
+        return {}

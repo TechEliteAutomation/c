@@ -93,6 +93,7 @@ Thumbs.db
 /.old/
 /builds/
 /speech_models/
+/docs/
 
 # Add any other large, local-only directories here if needed.
 # For example:

@@ -1,4 +1,5 @@
 # src/toolkit/system/executor.py
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -68,3 +69,52 @@ def execute_script(
             f"'{script_path_obj.name}': {e}"
         )
         raise
+
+# Add these file system utility functions.
+# Ensure they have proper error handling for production use.
+
+def create_file(path: str, content: str):
+    """Creates a file at the given path with the specified content."""
+    try:
+        # Only create directories if path contains a directory component
+        dir_path = os.path.dirname(path)
+        if dir_path:
+            os.makedirs(dir_path, exist_ok=True)
+        
+        with open(path, "w") as f:
+            f.write(content)
+        print(f"File created: {path}")
+        return True
+    except Exception as e:
+        print(f"Error creating file {path}: {e}")
+        return False
+
+def read_file(path: str) -> str:
+    """Reads the content of a file."""
+    try:
+        with open(path, "r") as f:
+            return f.read()
+    except Exception as e:
+        print(f"Error reading file {path}: {e}")
+        return ""
+
+def update_file(path: str, content: str):
+    """Appends content to an existing file."""
+    try:
+        with open(path, "a") as f:
+            f.write(content)
+        print(f"File updated: {path}")
+        return True
+    except Exception as e:
+        print(f"Error updating file {path}: {e}")
+        return False
+
+def create_directory(path: str):
+    """Creates a directory if it doesn't exist."""
+    try:
+        os.makedirs(path, exist_ok=True)
+        print(f"Directory created: {path}")
+        return True
+    except Exception as e:
+        print(f"Error creating directory {path}: {e}")
+        return False

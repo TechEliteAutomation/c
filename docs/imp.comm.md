@@ -1,10 +1,10 @@
-## **Project: AI Communications Manager - Final Technical Specification**
+## **Project: AI Communications Manager - Final Technical Specification (v2)**
 
 ### **1. Executive Summary**
 
 This document provides the definitive technical specification for the AI Communications Manager, a professional-grade application designed for automated, local-first analysis of a complete communications backlog. The architecture is designed for seamless integration into your existing development framework, leveraging the `src/toolkit` for modular, reusable components and `apps` for the main application logic.
 
-This final version expands the project's scope to include the capture and automated transcription of voice call recordings from both Google Voice and a personal cellular line. By integrating a local speech-to-text engine (`whisper.cpp`), we transform the most labor-intensive manual task (voicemail transcription) into a simple file management operation, creating a highly efficient and unified text and voice data processing pipeline. The system is designed for daily, incremental operation after an initial full-history sync.
+This final version expands the project's scope to include two critical data sources: the capture and automated transcription of voice call recordings, and the direct, automated ingestion of emails from a specified sender (`softrol`) via the Gmail API. By integrating a local speech-to-text engine (`whisper.cpp`) and a secure API client, we transform labor-intensive manual data gathering into a fully automated, unified text, voice, and email processing pipeline. The system is designed for daily, incremental operation after an initial full-history sync.
 
 ### **2. Project Structure Integration**
 
@@ -16,9 +16,10 @@ _Estimated Time: 5 minutes_
 The following commands will scaffold the necessary directory structure.
 
 ```bash
-# Create directories for data inputs, including a new one for audio
+# Create directories for data inputs, including audio and API credentials
 mkdir -p data/comms/google_takeout
 mkdir -p data/comms/audio_recordings/processed
+mkdir -p data/comms/api_credentials
 
 # Create directory for generated reports
 mkdir -p reports/comms_triage
@@ -27,13 +28,14 @@ mkdir -p reports/comms_triage
 mkdir -p src/toolkit/parsers
 touch src/toolkit/parsers/__init__.py
 touch src/toolkit/parsers/comms_parser.py
+touch src/toolkit/parsers/email_parser.py # New module for Gmail
 touch apps/comm_triage.py
 ```
 
 #### **2.2. Gitignore**
 _Estimated Time: <1 minute_
 
-Update your root `.gitignore` file to prevent committing sensitive data, generated reports, or local state.
+Update your root `.gitignore` file to prevent committing sensitive data.
 
 ```gitignore
 # ~/ai_comms_manager/.gitignore
@@ -48,13 +50,16 @@ Update your root `.gitignore` file to prevent committing sensitive data, generat
 
 # Ignore application state file
 /apps/last_run_timestamps.json
+
+# Ignore sensitive API tokens
+/data/comms/api_credentials/token.json
 ```
 
 ### **3. Configuration (`config.toml`)**
 
 _Estimated Time: 5 minutes_
 
-Add the following section to your root `config.toml`. This centralizes all configuration, making the application robust and easy to maintain.
+Add the following section to your root `config.toml`.
 
 ```toml
 # ~/ai_comms_manager/config.toml
@@ -65,8 +70,13 @@ ollama_model = "llama3:8b"
 ollama_endpoint = "http://localhost:11434/api/generate"
 
 # Local AI Transcription Settings
-whisper_model = "base.en" # (e.g., tiny.en, base.en, small.en)
-whisper_cpp_path = "/path/to/your/whisper.cpp" # Absolute path to whisper.cpp directory
+whisper_model = "base.en"
+whisper_cpp_path = "/path/to/your/whisper.cpp"
+
+# Gmail API Settings
+gmail_credentials_path = "data/comms/api_credentials/credentials.json"
+gmail_token_path = "data/comms/api_credentials/token.json"
+gmail_query = "from:softrol" # Standard Gmail search query
 
 # Data and Report Paths
 takeout_dir = "data/comms/google_takeout"
@@ -82,17 +92,17 @@ state_file = "apps/last_run_timestamps.json"
 This phase covers the one-time setup of all tools and data sources.
 
 #### **4.1. Toolchain Setup**
-_Estimated Time: 30 - 45 minutes_
+_Estimated Time: 45 - 60 minutes_
 
-1.  **System Packages**: Install `ffmpeg` for audio conversion, which is required by Whisper.
+1.  **System Packages**: Install `ffmpeg` for audio conversion.
     ```bash
     sudo pacman -Syu ffmpeg
     ```
 2.  **Python Dependencies**: Add the required libraries to your project.
     ```bash
-    poetry add beautifulsoup4 toml
+    poetry add beautifulsoup4 toml google-api-python-client google-auth-httplib2 google-auth-oauthlib
     ```
-3.  **Local Transcription Engine (`whisper.cpp`)**: Clone, compile, and download a model. This provides fast, private, and highly accurate audio transcription.
+3.  **Local Transcription Engine (`whisper.cpp`)**: Clone, compile, and download a model.
     ```bash
     git clone https://github.com/ggerganov/whisper.cpp.git /path/to/your/whisper.cpp
     cd /path/to/your/whisper.cpp
@@ -101,94 +111,122 @@ _Estimated Time: 30 - 45 minutes_
     ```
     *Note: Update the `whisper_cpp_path` in `config.toml` to this location.*
 
-#### **4.2. Call Recording & Voice Data Strategy**
-_Estimated Time: 15 - 20 minutes for setup_
+#### **4.2. Gmail API Setup (One-Time)**
+_Estimated Time: 15 - 20 minutes_
 
-1.  **Google Voice (Business Line)**: Google Voice provides a reliable, built-in recording feature.
-    *   **Setup**: Navigate to the Google Voice settings page. Under `Calls > Incoming call options`, enable `Call options`.
-    *   **Workflow**: When you answer a call, press `4` on your keypad to start recording. An audible announcement ("This call is now being recorded") will play. Press `4` again to stop. The resulting `.mp3` file will appear in your email and Google Voice history.
-    *   **Daily Task**: Your daily task is to download these `.mp3` files into your `data/comms/audio_recordings/` directory.
+This procedure authorizes the application to read your email securely.
 
-2.  **Personal Line (Android)**: Automated call recording on non-rooted, modern Android devices is technically challenging due to OS privacy restrictions.
-    *   **Challenge**: Most Play Store apps are unreliable. They may fail to record, capture only your voice via the microphone, or require invasive permissions.
-    *   **Recommended Solution (Best Effort)**: Use an application that leverages the Accessibility Service. **Cube ACR** is a well-known option.
-    *   **Setup**:
-        1.  Install Cube ACR from the Play Store.
-        2.  During setup, you must grant it several sensitive permissions, including making it an "enabled app" in the Accessibility menu. This is a **significant privacy and security trade-off** which you must accept to proceed.
-        3.  Configure it to automatically record calls and save them to a specific folder on your device's storage.
-    *   **Daily Task**: Connect your phone via `adb` or use a sync service to move the new audio recording files from your device to the `data/comms/audio_recordings/` directory.
+1.  **Enable API**: Go to the [Google Cloud Console](https://console.cloud.google.com/). Create a new project, search for "Gmail API", and enable it.
+2.  **Create Credentials**:
+    *   Navigate to "APIs & Services" > "Credentials".
+    *   Click "Create Credentials" > "OAuth client ID".
+    *   If prompted, configure the "OAuth consent screen". Select "External" and provide a name for the app (e.g., "Local Comms Manager").
+    *   For "Application type", select **"Desktop app"**.
+3.  **Download Credentials**: After creation, click the "Download JSON" icon next to the new client ID. Save this file as `credentials.json` inside your `data/comms/api_credentials/` directory.
+4.  **Authorize Application**: The first time `email_parser.py` runs, it will open a browser window asking you to log in and grant permission. Upon success, it will automatically create a `token.json` file (specified by `gmail_token_path` in your config). This file will be used for all future, non-interactive runs.
 
-#### **4.3. Initial Data Export**
+#### **4.3. Call Recording & Voice Data Strategy**
+*(This section is unchanged)*
+
+#### **4.4. Initial Data Export**
+*(This section is simplified as Gmail is now automated)*
 _Estimated Time: 1.5 - 4+ hours (dominated by manual data gathering)_
 
 *   **Google Takeout (`takeout_dir`)**: Perform a full export of your Google Voice history. *(15-45 mins)*
-*   **SMS Backup (`sms_xml_file`)**: Use "SMS Backup & Restore" to create a single XML backup of your entire SMS history. *(5-10 mins)*
+*   **SMS Backup (`sms_xml_file`)**: Use "SMS Backup & Restore" to create a single XML backup. *(5-10 mins)*
 *   **User Profile (`user_profile_file`)**: Generate and save your user profile. *(10-15 mins)*
-*   **Historical Voicemails**: For voicemails that exist only as text transcripts (before call recording was set up), they must still be manually transcribed into a temporary file for a one-time import. *(30-120+ mins)*
+*   **Historical Voicemails**: Manually transcribe any legacy voicemails for one-time import. *(30-120+ mins)*
 
 ### **5. Refactored Application Code**
 
-The application is architected for maintainability and clarity, separating concerns into parsers and the main application orchestrator.
+#### **5.1. Toolkit: Comms Parser (`src/toolkit/parsers/comms_parser.py`)**
+*(This module is unchanged)*
 
-#### **5.1. Toolkit: Parsers (`src/toolkit/parsers/comms_parser.py`)**
-
-This module remains focused on parsing structured text formats (XML, HTML).
+#### **5.2. New Toolkit: Email Parser (`src/toolkit/parsers/email_parser.py`)**
+This new module handles all interaction with the Gmail API.
 
 ```python
-# ~/ai_comms_manager/src/toolkit/parsers/comms_parser.py
-# (Code is unchanged from the previous version, providing parse_sms_xml and parse_google_takeout)
+# ~/ai_comms_manager/src/toolkit/parsers/email_parser.py
 import os
-import xml.etree.ElementTree as ET
+import base64
 from datetime import datetime, timezone
-import glob
-from bs4 import BeautifulSoup
 from typing import List, Dict, Any
 
-def parse_sms_xml(xml_file: str, since_timestamp: float = 0.0) -> List[Dict[str, Any]]:
-    """Parses an SMS Backup & Restore XML file, returning messages since a timestamp."""
-    if not os.path.exists(xml_file): return []
-    tree = ET.parse(xml_file)
-    messages = []
-    for msg in tree.getroot().findall('sms'):
-        try:
-            ts = int(msg.get('date')) / 1000.0
-            if ts <= since_timestamp: continue
-            messages.append({
-                "source": "personal-sms", "sender": msg.get('address'),
-                "timestamp": datetime.fromtimestamp(ts, tz=timezone.utc).isoformat(),
-                "content": msg.get('body')
-            })
-        except (TypeError, ValueError): continue
-    return messages
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
-def parse_google_takeout(takeout_dir: str, since_timestamp: float = 0.0) -> List[Dict[str, Any]]:
-    """Parses Google Voice HTML files from a Takeout export."""
-    if not os.path.isdir(takeout_dir): return []
-    messages = []
-    for file_path in glob.glob(os.path.join(takeout_dir, "Voice/Calls", "*.html")):
-        with open(file_path, 'r', encoding='utf-8') as f: soup = BeautifulSoup(f, 'html.parser')
-        for conv in soup.find_all('div', class_='thread'):
-            sender = conv.find('a', class_='tel').get('href').replace('tel:', '')
-            for msg_div in conv.find_all('div', class_='message'):
-                try:
-                    dt = datetime.fromisoformat(msg_div.find('abbr', class_='dt').get('title'))
-                    if dt.timestamp() <= since_timestamp: continue
-                    messages.append({
-                        "source": "business-google-voice", "sender": sender,
-                        "timestamp": dt.isoformat(),
-                        "content": msg_div.find('q').get_text(strip=True)
-                    })
-                except Exception: continue
-    return messages
+SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
+
+def _get_gmail_service(creds_path: str, token_path: str):
+    creds = None
+    if os.path.exists(token_path):
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(creds_path, SCOPES)
+            creds = flow.run_local_server(port=0)
+        with open(token_path, 'w') as token:
+            token.write(creds.to_json())
+    return build('gmail', 'v1', credentials=creds)
+
+def parse_gmail(creds_path: str, token_path: str, query: str, since_timestamp: float = 0.0) -> List[Dict[str, Any]]:
+    """Parses Gmail messages matching a query since a given timestamp."""
+    if since_timestamp > 0:
+        since_date = datetime.fromtimestamp(since_timestamp).strftime('%Y/%m/%d')
+        query += f" after:{since_date}"
+
+    try:
+        service = _get_gmail_service(creds_path, token_path)
+        results = service.users().messages().list(userId='me', q=query).execute()
+        messages_info = results.get('messages', [])
+        
+        communications = []
+        if not messages_info:
+            return communications
+
+        for msg_info in messages_info:
+            msg = service.users().messages().get(userId='me', id=msg_info['id'], format='full').execute()
+            
+            ts = int(msg['internalDate']) / 1000.0
+            if ts <= since_timestamp: continue
+
+            headers = {h['name']: h['value'] for h in msg['payload']['headers']}
+            sender = headers.get('From', 'Unknown Sender')
+            
+            content = ""
+            if 'parts' in msg['payload']:
+                for part in msg['payload']['parts']:
+                    if part['mimeType'] == 'text/plain':
+                        content = base64.urlsafe_b64decode(part['body']['data']).decode('utf-8')
+                        break
+            else: # Not a multipart message
+                if 'data' in msg['payload']['body']:
+                    content = base64.urlsafe_b64decode(msg['payload']['body']['data']).decode('utf-8')
+
+            communications.append({
+                "source": "gmail-softrol",
+                "sender": sender,
+                "timestamp": datetime.fromtimestamp(ts, tz=timezone.utc).isoformat(),
+                "content": f"Subject: {headers.get('Subject', 'N/A')}\n\n{content.strip()}"
+            })
+        return communications
+    except (HttpError, FileNotFoundError) as e:
+        print(f"❌ Gmail API Error: {e}. Ensure 'credentials.json' is correct and you have authorized the app.")
+        return []
+
 ```
 
-#### **5.2. Main Application (`apps/comm_triage.py`)**
-
-This is the orchestrator. It is significantly updated to include the automated transcription pre-processing step.
+#### **5.3. Main Application (`apps/comm_triage.py`)**
+The orchestrator is updated to call the new email parser.
 
 ```python
 # ~/ai_comms_manager/apps/comm_triage.py
-
+# ... (imports and prompt templates are mostly unchanged) ...
 import os
 import sys
 import json
@@ -198,106 +236,60 @@ import subprocess
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 
-# Add project root to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.toolkit.ai.client import ollama_request
 from src.toolkit.parsers.comms_parser import parse_sms_xml, parse_google_takeout
+from src.toolkit.parsers.email_parser import parse_gmail # Import the new parser
 
-# --- Prompt Templates (Truncated) ---
-ANONYMIZATION_PROMPT = "..."
-TRIAGE_PROMPT = "..."
-
-def load_config() -> Optional[Dict[str, Any]]:
-    try:
-        config_path = os.path.join(os.path.dirname(sys.path[-1]), 'config.toml')
-        return toml.load(config_path).get('comms_triage')
-    except Exception as e:
-        print(f"❌ Config Error: {e}"); return None
-
-def transcribe_audio_files(cfg: Dict) -> List[Dict[str, Any]]:
-    """Transcribes new audio files using whisper.cpp and returns structured data."""
-    audio_dir = cfg['audio_dir']
-    processed_dir = os.path.join(audio_dir, "processed")
-    whisper_path = cfg['whisper_cpp_path']
-    model = cfg['whisper_model']
-    
-    new_communications = []
-    audio_files = [f for f in os.listdir(audio_dir) if f.endswith(('.mp3', '.wav', '.m4a'))]
-    
-    if not audio_files: return []
-    print(f"Found {len(audio_files)} new audio file(s) for transcription...")
-
-    for filename in audio_files:
-        audio_file_path = os.path.join(audio_dir, filename)
-        output_txt_path = os.path.join(audio_dir, filename + ".txt")
-        
-        cmd = [
-            os.path.join(whisper_path, "main"),
-            "-m", os.path.join(whisper_path, f"models/ggml-{model}.bin"),
-            "-f", audio_file_path, "-otxt", "-nt"
-        ]
-        
-        try:
-            subprocess.run(cmd, check=True, capture_output=True, text=True)
-            with open(output_txt_path, 'r') as f:
-                content = f.read().strip()
-            
-            # Simple parsing from filename (can be improved)
-            # Assumes filename format like 'YYYY-MM-DD_HHMM_SENDER.mp3'
-            parts = os.path.splitext(filename)[0].split('_')
-            timestamp = datetime.strptime(f"{parts[0]} {parts[1]}", "%Y-%m-%d %H%M").astimezone().isoformat()
-            sender = parts[2] if len(parts) > 2 else "Unknown Caller"
-
-            new_communications.append({
-                "source": "personal-call-recording" if "personal" in sender.lower() else "business-call-recording",
-                "sender": sender,
-                "timestamp": timestamp,
-                "content": content
-            })
-            
-            # Cleanup and archive
-            os.remove(output_txt_path)
-            os.rename(audio_file_path, os.path.join(processed_dir, filename))
-            print(f"✅ Transcribed and processed: {filename}")
-
-        except (subprocess.CalledProcessError, FileNotFoundError, IndexError) as e:
-            print(f"❌ Failed to transcribe {filename}: {e}")
-            continue
-            
-    return new_communications
-
-# ... (load_config, read_state, write_state, anonymize_data functions from previous version) ...
-# (These functions are unchanged)
+# ... (ANONYMIZATION_PROMPT, TRIAGE_PROMPT, load_config, transcribe_audio_files, etc. are unchanged) ...
 
 def main():
     parser = argparse.ArgumentParser(description="AI Communications Manager")
     # ... (argparse setup unchanged) ...
     args = parser.parse_args()
-    cfg = load_config();
+    cfg = load_config()
     if not cfg: sys.exit(1)
 
+    state = read_state(cfg['state_file'])
+    since_ts = 0.0 if args.full_sync else state.get('last_run_utc', 0.0)
+
     # --- 0. Transcription Pre-processing ---
-    print("\n[Phase 0/4] Checking for new audio recordings...")
+    print("\n[Phase 0/5] Checking for new audio recordings...")
     transcribed_data = transcribe_audio_files(cfg)
 
     # --- 1. Data Extraction ---
-    print("\n[Phase 1/4] Extracting text-based data...")
-    # ... (unchanged logic for parsing SMS, Google Voice, and getting manual data) ...
-    # ... (manual data entry is now for one-off historical items, not daily voicemails) ...
+    print("\n[Phase 1/5] Extracting text-based data...")
+    sms_data = parse_sms_xml(cfg['sms_xml_file'], since_ts)
+    gvoice_data = parse_google_takeout(cfg['takeout_dir'], since_ts)
     
-    all_data = transcribed_data + sms_data + gvoice_data + manual_data
+    # --- 2. Email Ingestion ---
+    print("\n[Phase 2/5] Fetching new emails from Gmail...")
+    email_data = parse_gmail(
+        cfg['gmail_credentials_path'],
+        cfg['gmail_token_path'],
+        cfg['gmail_query'],
+        since_ts
+    )
+    
+    manual_data = get_manual_entry() if args.manual else []
+    
+    all_data = transcribed_data + sms_data + gvoice_data + email_data + manual_data
     if not all_data:
         print("\n✅ No new communications to process.")
         return
 
-    # --- 2. Anonymization ---
-    print(f"\n[Phase 2/4] Anonymizing {len(all_data)} total items...")
+    # --- 3. Anonymization ---
+    print(f"\n[Phase 3/5] Anonymizing {len(all_data)} total items...")
     # ... (anonymization logic unchanged) ...
 
-    # --- 3. Triage and Reporting ---
-    print("\n[Phase 3/4] Generating Triage Report...")
+    # --- 4. Triage and Reporting ---
+    print("\n[Phase 4/5] Generating Triage Report...")
     # ... (report generation logic unchanged) ...
+
+    # --- 5. State Update ---
+    print("\n[Phase 5/5] Finalizing run...")
+    # ... (state update logic unchanged) ...
 
 if __name__ == "__main__":
     main()
@@ -306,10 +298,10 @@ if __name__ == "__main__":
 ### **6. Usage and Workflow**
 
 #### **6.1. Initial Setup & Backlog Clearance**
-_Estimated Time: 2 - 6 hours (dominated by one-time data tasks)_
+_Estimated Time: 2.5 - 6.5 hours_
 
-1.  **Complete Setup**: Follow all steps in Phase 1.
-2.  **Execute Full Sync**: Run the main application with the `--full-sync` flag. This will process all historical data, run the lengthy anonymization process, and generate your `MASTER_TRIAGE_REPORT.md`.
+1.  **Complete Setup**: Follow all steps in Phase 1, including the Gmail API setup.
+2.  **Authorize & Execute Full Sync**: Run the main application with the `--full-sync` flag. The first run will trigger the one-time browser authentication for Gmail.
     ```bash
     python apps/comm_triage.py --full-sync
     ```
@@ -317,12 +309,11 @@ _Estimated Time: 2 - 6 hours (dominated by one-time data tasks)_
 #### **6.2. Daily Operational Workflow**
 _Estimated Time: 5 - 10 minutes_
 
-Your daily routine is now streamlined to simple file management followed by a single command.
+Your daily routine is now streamlined to simple file management followed by a single command. The Gmail portion is fully automated.
 
-1.  **Gather Audio**: Move any new call recordings from your phone(s) into the `data/comms/audio_recordings/` directory.
-2.  **Update SMS Backup**: Ensure "SMS Backup & Restore" has run its daily schedule, updating the `sms_backup.xml` file.
-3.  **Run Daily Triage**: Execute the script with the `--daily` flag.
+1.  **Gather Audio**: Move any new call recordings into `data/comms/audio_recordings/`.
+2.  **Update SMS Backup**: Ensure "SMS Backup & Restore" has run its daily schedule.
+3.  **Run Daily Triage**: Execute the script. It will automatically and incrementally fetch new emails, audio, and texts.
     ```bash
     python apps/comm_triage.py --daily
     ```
-    The script will first transcribe new audio, then process new text messages, and finally generate your date-stamped daily report in `reports/comms_triage/`.

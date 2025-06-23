@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 # A robust script to automatically commit and push changes for a single Git monorepo.
-# It checks for remote changes before pushing to prevent errors and ensures a clean sync.
+# This script is UNIDIRECTIONAL: it force-pushes local changes to the cloud,
+# overwriting any remote-only changes. It will never pull or merge from the remote.
 #
 
 # Exit immediately if a command exits with a non-zero status.
@@ -39,7 +40,7 @@ load_config() {
 }
 
 # Load configuration into variables
-REPO_DIR=$(load_config "repo_directory") # Changed from base_directory for clarity
+REPO_DIR=$(load_config "repo_directory")
 LOG_FILE=$(load_config "log_file")
 GIT_EMAIL=$(load_config "git_email")
 GIT_NAME=$(load_config "git_name")
@@ -55,7 +56,7 @@ log() {
     echo "[$(date "+%Y-%m-%d %H:%M:%S")] $1" | tee -a "$LOG_FILE"
 }
 
-log "--- Starting Git Sync for Monorepo: $REPO_DIR ---"
+log "--- Starting Unidirectional Git Sync for Monorepo: $REPO_DIR ---"
 
 # Navigate to the repository directory.
 if ! cd "$REPO_DIR"; then
@@ -69,19 +70,16 @@ log "Step 1: Configuring Git user..."
 git config user.email "$GIT_EMAIL"
 git config user.name "$GIT_NAME"
 
-log "Step 2: Fetching remote changes..."
-# Fetch updates from the remote without merging them.
+log "Step 2: Fetching remote state..."
+# Fetch updates from the remote to update our knowledge of the remote branch.
+# This is crucial for the safety of 'push --force-with-lease'.
 if ! git fetch origin; then
     log "ERROR: Failed to fetch from remote 'origin'. Check network connection and repository URL."
     exit 1
 fi
 
-log "Step 3: Checking repository status..."
-# Check if the local branch is behind the remote branch.
-if git status -uno | grep -q 'Your branch is behind'; then
-    log "ERROR: Local branch is behind remote. Manual 'git pull' is required to resolve."
-    exit 1
-fi
+log "Step 3: Checking for local changes..."
+# MODIFICATION: The check for 'Your branch is behind' has been removed to allow overwriting the remote.
 
 # Check for uncommitted local changes.
 if ! git status --porcelain | grep -q .; then
@@ -96,12 +94,13 @@ log "Step 4: Committing local changes..."
 git add -A
 git commit -m "$COMMIT_MESSAGE"
 
-log "Step 5: Pushing changes to remote..."
-# Push to the current branch's upstream remote.
-if git push origin "$(git rev-parse --abbrev-ref HEAD)"; then
-    log "Successfully pushed changes."
+log "Step 5: Force-pushing changes to remote..."
+# MODIFICATION: Using 'push --force-with-lease' to overwrite the remote branch.
+# This is the core of the unidirectional sync. It ensures the remote matches the local state.
+if git push --force-with-lease origin "$(git rev-parse --abbrev-ref HEAD)"; then
+    log "Successfully force-pushed changes, overwriting remote."
 else
-    log "ERROR: Failed to push changes. A manual push is required."
+    log "ERROR: Failed to force-push changes. This can happen if the remote was updated after our fetch. Manual intervention required."
     exit 1
 fi
 

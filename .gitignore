@@ -94,6 +94,7 @@ Thumbs.db
 /builds/
 /speech_models/
 /docs/
+/experimental/
 
 # Add any other large, local-only directories here if needed.
 # For example:

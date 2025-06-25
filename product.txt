@@ -1,5 +1,0 @@
-- Model: T-800
-- Material: Hyperalloy, living tissue covering
-- CPU: Neural Net
-- Power Source: Iridium-based nuclear cell
-- Features: Advanced learning capability, detailed files on human anatomy

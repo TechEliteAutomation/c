@@ -2,14 +2,15 @@
 # Script Name: process_media.sh
 # Description: Orchestrates a media file processing pipeline.
 # Refactored to use the project's central config.toml.
-# Version: 2.0
+# Version: 2.1 (Added WebP to PNG conversion)
 
 # --- Script Setup ---
 set -euo pipefail
 
 # --- Configuration Loading ---
 
-# Function to load a value from config.toml under the [media_processing] section
+# Function to load a value from config.toml
+# IMPORTANT: This function expects a section named [media_processing], not [app_settings.media_processing]
 load_config() {
     local key="$1"
     local SCRIPT_DIR
@@ -25,6 +26,7 @@ load_config() {
     fi
 
     # Use awk for robust parsing: find [media_processing] section, then find the key.
+    # NOTE: This parser is simple and expects the section name to be exactly [media_processing]
     local value
     value=$(awk -F'=' '/^\[media_processing\]/{in_section=1} /^\[/{if(!/^\[media_processing\]/) in_section=0} in_section && /^\s*'"$key"'\s*=/{gsub(/[ \t"]/, "", $2); print $2; exit}' "$CONFIG_FILE")
 
@@ -41,7 +43,7 @@ load_config() {
 
 # --- Configuration ---
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-RENAMER_SCRIPT_PATH="$SCRIPT_DIR/rename_files.sh" # Corrected path
+RENAMER_SCRIPT_PATH="$SCRIPT_DIR/rename_files.sh"
 
 # Load from config.toml
 BACKUP_BASE_DIR=$(load_config "backup_base_dir")
@@ -232,6 +234,35 @@ _convert_jpegs_to_png() {
     log_info "JPEG to PNG conversion pass (for files < ${JPEG_TO_PNG_MAX_KIB}KiB) complete."
 }
 
+# <<< START OF NEW FUNCTION >>>
+_convert_webps_to_png() {
+    log_step "Converting all WebP files to PNG (parallel)"
+    if ! command -v mogrify >/dev/null 2>&1; then
+        log_warn "ImageMagick 'mogrify' not found. Skipping WebP to PNG conversion."
+        return
+    fi
+    if ! find . -maxdepth 10 -type f -iname "*.webp" -print -quit 2>/dev/null | grep -q .; then
+        log_info "No .webp files found for conversion."
+        return
+    fi
+    log_info "Converting WebP files in parallel (max $PARALLEL_JOBS jobs)..."
+    find . -maxdepth 10 -type f -iname "*.webp" -print0 | \
+    xargs -0 -r -P "$PARALLEL_JOBS" -I{} bash -c '
+        file="$1"; base_file=$(basename "$file")
+        _log_conv_ok() { echo "    [CONVERT-WEBP-WORKER][$(date "+%H:%M:%S")] OK: $1"; }
+        _log_conv_fail() { echo "    [CONVERT-WEBP-WORKER][$(date "+%H:%M:%S")] FAIL: $1" >&2; }
+
+        if mogrify -format png "$file" &>/dev/null; then
+            rm "$file"
+            _log_conv_ok "Converted '\''$base_file'\'' to PNG and removed original."
+        else
+            _log_conv_fail "Could not convert '\''$base_file'\'' to PNG. Original WebP not removed."
+        fi
+    ' -- {}
+    log_info "WebP to PNG conversion pass complete."
+}
+# <<< END OF NEW FUNCTION >>>
+
 _remove_duplicates() {
     log_step "Removing duplicates"
     if ! command -v rmlint >/dev/null 2>&1; then
@@ -271,6 +302,7 @@ main() {
     _remove_duplicates
     _rename_files_external || { log_error "Renaming failed. Aborting."; exit 1; }
     _convert_jpegs_to_png
+    _convert_webps_to_png # <<< NEW STEP ADDED TO WORKFLOW
     _remove_exif_data
     log_info "Performing final duplicate check..."
     _remove_duplicates

@@ -1,10 +1,11 @@
 # ai_console.py
 
 import os
-import json
+
 from toolkit.ai.agent import OrchestratorAgent
+from toolkit.system.executor import read_file
 from toolkit.utils.config import get_axiom_config
-from toolkit.system.executor import read_file, create_file
+
 
 class AxiomConsole:
     """
@@ -44,7 +45,7 @@ class AxiomConsole:
 
         if command == "/help":
             self.print_help()
-        
+
         elif command == "/new_prompt":
             if not args:
                 print("🔴 Usage: /new_prompt <your prompt idea>")
@@ -79,12 +80,12 @@ class AxiomConsole:
             if not args:
                 print("🔴 Usage: /read <filename>")
                 return
-            
+
             filepath = self.session_artifacts.get(args)
             if not filepath:
                 print(f"🔴 Error: Artifact '{args}' not found in this session.")
                 return
-            
+
             print(f"\n--- Content of {args} ---\n")
             content = read_file(filepath)
             print(content)
@@ -92,10 +93,10 @@ class AxiomConsole:
 
         elif command == "/quit":
             return False # Signal to exit the loop
-            
+
         else:
             print(f"🔴 Unknown command: '{command}'. Type '/help' for options.")
-        
+
         return True # Signal to continue the loop
 
     def start(self):
@@ -106,17 +107,21 @@ class AxiomConsole:
                 user_input = input("axiom> ")
                 if not user_input:
                     continue
-                
+
                 if user_input.startswith('/'):
                     running = self.handle_command(user_input)
                 else:
                     # For now, general chat is not implemented.
-                    # This is where you could add a direct conversation with a core agent.
-                    print("Conversation mode not yet implemented. Please use a command. Type '/help' for options.")
+                    # This is where you could add a direct conversation with a
+                    # core agent.
+                    print(
+                        "Conversation mode not yet implemented. Please use a command. "
+                        "Type '/help' for options."
+                    )
 
             except (KeyboardInterrupt, EOFError):
                 running = False
-        
+
         print("\nExiting Axiom Console. Goodbye.")
 
 

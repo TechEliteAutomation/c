@@ -1,23 +1,27 @@
 # /home/u/c/src/toolkit/ai/agent.py
 
 import os
-from .client import GeminiClient
-from .ollama_client import OllamaClient # Import the new client
+
 from toolkit.system.executor import read_file
+
+from .client import GeminiClient
+from .ollama_client import OllamaClient  # Import the new client
+
 
 class OrchestratorAgent:
     """
     The primary brain of the Axiom system. It now manages multiple AI clients
     and routes requests to the appropriate model.
     """
+
     def __init__(self, config):
         self.config = config
-        self.roles_dir = config.get('roles_dir', 'prompts/roles')
-        
+        self.roles_dir = config.get("roles_dir", "prompts/roles")
+
         # --- Initialize all available clients ---
         self.clients = {
             "gemini-1.5-pro-latest": GeminiClient(),
-            "ollama": OllamaClient() # A generic Ollama client
+            "ollama": OllamaClient(),  # A generic Ollama client
         }
 
     def _get_role_prompt(self, role_name: str) -> str:
@@ -33,7 +37,7 @@ class OrchestratorAgent:
         `model_key` can be 'gemini-1.5-pro-latest' or an ollama model like 'llama3'.
         """
         system_prompt = self._get_role_prompt(persona_name)
-        
+
         if model_key.startswith("gemini"):
             client = self.clients["gemini-1.5-pro-latest"]
             return client.generate_with_tools(system_prompt, chat_history)

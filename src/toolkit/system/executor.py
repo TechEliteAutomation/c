@@ -70,8 +70,10 @@ def execute_script(
         )
         raise
 
+
 # Add these file system utility functions.
 # Ensure they have proper error handling for production use.
+
 
 def create_file(path: str, content: str):
     """Creates a file at the given path with the specified content."""
@@ -80,7 +82,7 @@ def create_file(path: str, content: str):
         dir_path = os.path.dirname(path)
         if dir_path:
             os.makedirs(dir_path, exist_ok=True)
-        
+
         with open(path, "w") as f:
             f.write(content)
         print(f"File created: {path}")
@@ -88,6 +90,7 @@ def create_file(path: str, content: str):
     except Exception as e:
         print(f"Error creating file {path}: {e}")
         return False
+
 
 def read_file(path: str) -> str:
     """Reads the content of a file."""
@@ -97,6 +100,7 @@ def read_file(path: str) -> str:
     except Exception as e:
         print(f"Error reading file {path}: {e}")
         return ""
+
 
 def update_file(path: str, content: str):
     """Appends content to an existing file."""
@@ -108,6 +112,7 @@ def update_file(path: str, content: str):
     except Exception as e:
         print(f"Error updating file {path}: {e}")
         return False
+
 
 def create_directory(path: str):
     """Creates a directory if it doesn't exist."""

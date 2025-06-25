@@ -58,9 +58,10 @@ pytest = ">=8.0.0"
 # --- Tool Configurations ---
 
 # This is the ONLY tool configuration needed now
+pre-commit = "^4.2.0"
 [tool.ruff]
 line-length = 88
-target-version = "py313"
+target-version = "py312"
 
 [tool.ruff.lint]
 # Emulate flake8, isort, and more

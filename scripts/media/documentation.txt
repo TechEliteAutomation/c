@@ -1,0 +1,57 @@
+[ START ]
+    |
+    V
+[ 1. Create Backup ]
+    |  Creates a .zip archive of the entire directory.
+    |  If this fails, the entire script stops.
+    |
+    V
+[ 2. Remove Duplicates (Pass 1) ]
+    |  Finds and removes any identical files in their original state.
+    |
+    V
+[ 3. Process Archives ]
+    |  Finds all .zip files.
+    |  Unzips each archive.
+    |  Deletes the original .zip file after successful extraction.
+    |
+    V
+[ 4. Delete Small Files ]
+    |  Finds all files smaller than MIN_FILE_SIZE_TO_DELETE_KIB.
+    |  Deletes them permanently.
+    |
+    V
+[ 5. Remove Duplicates (Pass 2) ]
+    |  Runs again to find duplicates that may have been introduced
+    |  by unzipping the archives.
+    |
+    V
+[ 6. Rename Files (External) ]
+    |  Calls the separate 'rename_files.sh' script to perform
+    |  custom renaming logic.
+    |
+    V
+[ 7. Convert JPEGs to PNGs ]
+    |  Finds all .jpg/.jpeg files within the size range defined by
+    |  JPEG_TO_PNG_MIN_KIB and JPEG_TO_PNG_MAX_KIB.
+    |  Converts them to .png files.
+    |  Deletes the original .jpg/.jpeg file after conversion.
+    |
+    V
+[ 8. Convert WebPs to PNGs ]
+    |  Finds ALL .webp files (no size limit).
+    |  Converts them to .png files.
+    |  Deletes the original .webp file after conversion.
+    |
+    V
+[ 9. Remove EXIF Data ]
+    |  Recursively finds all files and strips all metadata
+    |  (camera, location, etc.) from them.
+    |
+    V
+[ 10. Remove Duplicates (Pass 3) ]
+    |  The final pass to clean up any duplicates that might have
+    |  been created by the image conversion steps.
+    |
+    V
+[ END ]

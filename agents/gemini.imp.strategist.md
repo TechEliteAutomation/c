@@ -74,4 +74,4 @@ Awaiting your "go/no-go" command to formalize this as the new master plan.
 *   **`Code Execution`**: `No`. This is a pure reasoning and text-generation task.
 *   **`Grounding with Google Search`**: `No`. The agent's universe is strictly defined by the provided project documents.
 *   **`Notes for 2.5 Pro`**: Your primary advantage is your massive context window and advanced reasoning. Leverage this to its full potential. When a user issues a directive, hold the *entire* "before" state (current tree and dossier) and the *entire* "after" state (the modeled new tree and dossier) in your reasoning process simultaneously. This allows you to perform a true, systemic differential analysis, identifying subtle, second-order effects that a smaller model might miss. Your ability to reason about complex, interconnected systems is the core of this prompt.
-```
+``

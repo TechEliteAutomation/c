@@ -20,10 +20,10 @@
 # --- CONFIGURATION ---
 
 # Set the full path to your voice model file here for easy editing.
-#VOICE_MODEL="/home/u/c/speech_models/voices/en_US-hfc_male-medium.onnx"
+VOICE_MODEL="/home/u/c/speech_models/voices/en_US-hfc_male-medium.onnx"
 #VOICE_MODEL="/home/u/c/speech_models/voices/en_GB-alan-medium.onnx"
 #VOICE_MODEL="/home/u/c/speech_models/voices/en_GB-northern_english_male-medium.onnx"
-VOICE_MODEL="/home/u/c/speech_models/voices/en_GB-aru-medium.onnx"
+#VOICE_MODEL="/home/u/c/speech_models/voices/en_GB-aru-medium.onnx"
 
 # Set the audio format for your model.
 SAMPLE_RATE="22050"

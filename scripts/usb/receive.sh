@@ -10,8 +10,7 @@
 DEST_DIR="$HOME/0"
 
 # The block device representing your USB drive.
-# From your log, this is /dev/sdb. Double-check with 'lsblk' if you use a different drive.
-DEVICE="/dev/sdb"
+DEVICE="/dev/sda"
 
 # The temporary mount point for the USB drive.
 MOUNT_POINT="/mnt/usb"

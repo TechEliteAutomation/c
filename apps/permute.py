@@ -6,6 +6,7 @@
 import sys
 from itertools import permutations
 
+
 def main():
     """Main execution function."""
     if len(sys.argv) != 2:
@@ -17,11 +18,12 @@ def main():
     # The 'permutations' function returns an iterator of tuples.
     # We use a set comprehension to ensure uniqueness (for inputs with repeated chars)
     # and then join the tuples back into strings.
-    perms = {''.join(p) for p in permutations(input_str)}
+    perms = {"".join(p) for p in permutations(input_str)}
 
     # Sort the results for a consistent, predictable output order.
     for p in sorted(list(perms)):
         print(p)
+
 
 if __name__ == "__main__":
     main()

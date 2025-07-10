@@ -19,4 +19,5 @@ JPEG_TO_PNG_MAX_KIB=999
 # --- Small File Deletion ---
 # After unzipping, delete all files smaller than this size (in Kilobytes).
 # Set to 0 to disable this feature.
-MIN_FILE_SIZE_TO_DELETE_KIB=100
+MIN_FILE_SIZE_TO_DELETE_KIB=0
+#MIN_FILE_SIZE_TO_DELETE_KIB=100

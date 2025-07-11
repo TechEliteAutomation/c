@@ -1,4 +1,3 @@
-```markdown
 **`[PROMPT TITLE]`**: Professional Codebase Audit & Refinement Plan
 
 **`[CORE OBJECTIVE]`**: To perform a comprehensive audit of a software codebase, identifying areas for improvement in structure, code quality, documentation, and testing to elevate its overall professionalism.

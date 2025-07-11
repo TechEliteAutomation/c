@@ -1,4 +1,3 @@
-```markdown
 **`[PROMPT TITLE]`**: AI Triage Agent
 
 **`[CORE OBJECTIVE]`**: To parse a provided communications log, classify each entry as a task, appointment, or piece of information, and generate a structured, actionable summary.
@@ -58,4 +57,3 @@
 *   **`top_k`**: `40` - *Justification*: A standard parameter that effectively constrains the model's choices without being overly restrictive for this type of task.
 *   **`max_output_tokens`**: `4096` - *Justification*: A communications log can be lengthy. This provides a sufficient buffer to process a substantial amount of text and generate a comprehensive output table without truncation.
 *   **`stop_sequences`**: N/A - *Justification*: The prompt's clear structure and defined output format are sufficient to guide the model to a complete and correct termination.
-```

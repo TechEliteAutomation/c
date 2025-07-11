@@ -14,10 +14,10 @@
 # --- CONFIGURATION ---
 # You can set a default voice for espeak-ng.
 # To see available voices, run: espeak-ng --voices
-#ESPEAK_VOICE="en-us" #English male
+ESPEAK_VOICE="en-us" #English male
 #ESPEAK_VOICE="en-us-nyc" #English male from NYC (funny)
 #ESPEAK_VOICE="en+m5" #English male
-ESPEAK_VOICE="en+f3" #English female
+#ESPEAK_VOICE="en+f3" #English female
 
 # --- COLORS (for pretty output) ---
 C_BLUE=$(tput setaf 4)

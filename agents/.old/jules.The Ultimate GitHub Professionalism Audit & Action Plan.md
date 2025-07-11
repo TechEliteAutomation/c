@@ -1,4 +1,3 @@
-```markdown
 **`[PROMPT TITLE]`**: The Ultimate GitHub Professionalism Audit & Action Plan
 
 **`[CORE OBJECTIVE]`**: To conduct a definitive, master-level audit of the current local codebase, evaluating it against the highest standards of professional open-source software on GitHub, and to produce a prioritized, actionable report complete with time estimates for an expert-level user.

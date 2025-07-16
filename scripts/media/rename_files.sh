@@ -17,6 +17,7 @@ _get_extension_from_mime() {
 		"application/json") echo ".json" ;;
         "application/msword") echo ".doc" ;;
         "application/pdf") echo ".pdf" ;;
+        "application/xhtml+xml") echo ".xhtml" ;;
         "application/vnd.oasis.opendocument.text") echo ".odt" ;;
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") echo ".xlsx" ;;
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document") echo ".docx" ;;
@@ -40,6 +41,7 @@ _get_extension_from_mime() {
         "image/vnd.microsoft.icon") echo ".ico" ;;
         "message/rfc822") echo ".eml" ;;
         "text/html") echo ".html" ;;
+        "text/x-script.python") echo ".md" ;;
         "text/plain") echo ".txt" ;;
         "text/csv") echo ".csv" ;;
         "video/3gpp") echo ".3gp" ;;

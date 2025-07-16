@@ -28,6 +28,6 @@
 *   **`[OPTIMIZED RUNTIME SETTINGS]`**:
     *   `Temperature`: 0.1
     *   `Top_p`: 0.95
-    *   `Max Output Tokens`: 4096
+    *   `Max Output Tokens`: 65536
     *   `Grounding with Google Search`: False
     *   `URL Context`: False
